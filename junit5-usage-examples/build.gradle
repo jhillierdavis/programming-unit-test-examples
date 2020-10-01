@@ -1,0 +1,43 @@
+plugins {
+	id 'java'
+	id 'eclipse' // optional (to generate Eclipse project files)
+	id 'idea' // optional (to generate IntelliJ IDEA project files)
+}
+
+java {
+	// https://docs.gradle.org/current/javadoc/org/gradle/api/JavaVersion.html
+	// sourceCompatibility = JavaVersion.VERSION_1_9
+	// targetCompatibility = JavaVersion.VERSION_1_9
+}
+
+repositories {
+	// See https://mvnrepository.com
+	mavenCentral()
+}
+
+// see gradle.properties instead (for custom variables)
+/*
+ext {
+	jupiterVersion = '5.7.0'
+}
+*/
+
+dependencies {
+	// NB: Use double quotes (not single) with custom variables
+	testImplementation("org.junit.jupiter:junit-jupiter:$jupiterVersion")
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+
+sourceSets {
+	test {
+		resources {
+			srcDirs = ['src/test/resources']
+		}
+	}
+}
