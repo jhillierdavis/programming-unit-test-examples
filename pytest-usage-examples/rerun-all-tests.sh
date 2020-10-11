@@ -1,1 +1,1 @@
-pytest test_is_pytest_working.py
+pytest test_pytest.py
