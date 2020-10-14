@@ -13,9 +13,11 @@ class JavaScriptSpec extends Specification {
     def setupSpec() {
         def manager = new ScriptEngineManager()
         engine = manager.getEngineByName("nashorn")
+        if (null == engine) {
+            throw new RuntimeException("Failed to instantiate JavaScript engine!")
+        }
     }
 
-    @Ignore(value = "Illegal reflective access by org.codehaus.groovy.reflection.CachedClass from Groovy 2.5.13")
     def "can call a named JS function"()   {
         given:
             engine.eval  '''
