@@ -15,7 +15,7 @@ class JavaScriptSpec extends Specification {
         engine = manager.getEngineByName("nashorn")
     }
 
-
+    @Ignore(value = "Illegal reflective access by org.codehaus.groovy.reflection.CachedClass from Groovy 2.5.13")
     def "can call a named JS function"()   {
         given:
             engine.eval  '''
