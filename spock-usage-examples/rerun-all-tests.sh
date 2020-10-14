@@ -1,1 +1,1 @@
-gradle cleanTest test
+gradle cleanTest test --warning-mode all
