@@ -5,11 +5,14 @@ import json
 Unit Tests using PyTest: 
 
 * JSON deserialization/unmarshalling examples
+
+Ref.: https://python.readthedocs.io/en/stable/library/json.html
+
 """
 
 def _load_json_from_file(json_filename: str):
     with open(json_filename, 'r') as f:
-        data = json.load(f)
+        data = json.load(f) # use json.load() to deserialize from a file
     return data
 
 def test_marshalling_from_file():
@@ -24,8 +27,7 @@ def test_marshalling_from_file():
 
 def test_marshalling_from_string():
     # Given: some example json
-    json_string = """
-    {
+    json_string = """{
         "researcher": {
             "name": "Ford Prefect",
             "species": "Betelgeusian",
@@ -40,7 +42,7 @@ def test_marshalling_from_string():
     """
 
     # When: deserialized
-    json_data = json.loads(json_string)
+    json_data = json.loads(json_string) # use json.loads() to deserialize from string
 
     # Then: Python type for a JSON object is 'dict' (dictionary)
     type(json_data) == dict
