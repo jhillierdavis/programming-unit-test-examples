@@ -14,14 +14,15 @@ Exploration via examples of:
 
 """
 
-# Simple assertion
 def test_sum():
-    assert sum([1, 2, 3]) == 6, "Should be 6"	
+    # Expect: sum to correctly aggregate values from a list ()
+    assert sum([1, 2, 3]) == 6, "Should be 6" # Validate via a simple assertion
 
 
-# Simple assertion
+
 def test_string_size():
-	assert( len("pytest") == 6)
+    # Expect: string length to match expected size
+	assert( len("pytest") == 6) # Validate via a simple assertion
 
 # Parameterised test data
 @pytest.mark.parametrize(
@@ -34,15 +35,18 @@ def test_string_size():
     ],
 )
 def test_parameterised_string_size(str, expectedSize):
+    # Expect: data string lengths to match their expected size
 	assert len(str) == expectedSize
 
-# Exception handling
+
 def test_zero_division():
+    # Expect: a specific exception
     with pytest.raises(ZeroDivisionError):
+        # When: do something silly
         1 / 0
 
 # Ignore / skip
 @pytest.mark.skip(reason="example of intentionally skipped / ignored test")
 def test_ignore():
-	assert(true == false)
-	
+    # Intentionally failing tested (to be skipped)
+	assert(True == False)
