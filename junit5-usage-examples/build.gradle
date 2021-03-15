@@ -18,6 +18,7 @@ repositories {
 // see gradle.properties instead (for custom variables)
 /*
 ext {
+	// See: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter
 	jupiterVersion = '5.7.0'
 }
 */
