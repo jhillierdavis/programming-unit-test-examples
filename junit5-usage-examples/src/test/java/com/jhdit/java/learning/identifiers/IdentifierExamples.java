@@ -1,4 +1,4 @@
-package com.jhdit.java.learning.indentifiers;
+package com.jhdit.java.learning.identifiers;
 
 /**
  * Legal (including unconventional) & illegal identifier examples
