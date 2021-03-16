@@ -1,10 +1,10 @@
-package com.jhdit.java.learning.primitives;
+package com.jhdit.java.learning.primitives.wrappers;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class IntWrapperExamples {
+public class IntegerWrapperExamples {
 
     @Test
     public void intWrapperCreationAndConversion()    {
