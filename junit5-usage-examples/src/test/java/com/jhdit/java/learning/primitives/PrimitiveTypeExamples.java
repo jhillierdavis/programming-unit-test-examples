@@ -4,6 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Primitive (non-object) type examples e.g. boolean, byte, int, float, double
+ */
+
 public class PrimitiveTypeExamples {
 
     @DisplayName("Different ways to initialise char variables values")
