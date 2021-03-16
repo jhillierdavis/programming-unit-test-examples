@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Primitive (non-object) type examples e.g. boolean, byte, int, float, double
+ * Primitive (non-object) type examples e.g. boolean, byte, int, long, float, double
+ *
+ * NB: Primitives have value, but do NOT have operations/methods/behaviour (unlike classes/objects)
  */
 
 public class PrimitiveTypeExamples {
