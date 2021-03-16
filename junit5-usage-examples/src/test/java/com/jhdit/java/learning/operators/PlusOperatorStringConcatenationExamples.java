@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 
-public class PlusOperatorStringConcatenationTests {
+public class PlusOperatorStringConcatenationExamples {
 
     @Test
     public void concatenateNumbers()    {

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SwitchStatementTests {
+public class SwitchStatementExamples {
 
     /**
      * Example use of switch construct with fall-through (case without breaks)

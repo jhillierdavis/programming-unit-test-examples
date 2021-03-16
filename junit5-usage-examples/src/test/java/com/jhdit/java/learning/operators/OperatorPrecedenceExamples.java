@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  */
 
-public class OperatorPrecedenceTests {
+public class OperatorPrecedenceExamples {
 
     @Test
     public void multiplicativeBeforeAdditive() {
