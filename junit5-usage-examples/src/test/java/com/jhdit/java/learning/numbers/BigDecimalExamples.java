@@ -21,4 +21,17 @@ public class BigDecimalExamples {
         // Then: result is as expected
         assertEquals("15.59", priceIncTax.toString() );
     }
+
+    @Test
+    public void exploreRounding()    {
+        // Given: a price (including tax) & the tax rate
+        BigDecimal price = new BigDecimal(1.85);
+        BigDecimal taxRate = new BigDecimal(0.065);
+
+        // When: calculate the price excluding tax
+        BigDecimal amountWithoutTax = price.subtract(price.multiply(taxRate));
+
+        // Then: check the result is as expected
+        assertEquals(1.73, amountWithoutTax.setScale(2, RoundingMode.HALF_UP).doubleValue());
+    }
 }

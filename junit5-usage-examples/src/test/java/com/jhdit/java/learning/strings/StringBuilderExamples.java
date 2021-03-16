@@ -28,4 +28,13 @@ public class StringBuilderExamples {
         assertEquals(text.length(), sb.length());
     }
 
+    @Test
+    public void reverse() {
+        // Given: an initialised StringBuilder object
+        StringBuilder sb = new StringBuilder("drawer");
+
+        // Then: exercise its reverse() method.
+        assertEquals("reward", sb.reverse().toString());
+    }
+
 }

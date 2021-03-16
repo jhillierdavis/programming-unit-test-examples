@@ -60,4 +60,20 @@ public class PrimitiveTypeExamples {
         assert('*' == customLetterCaseToggle('*'));
         assert('!' == customLetterCaseToggle('!'));
     }
+
+    @Test
+    public void customRounding()    {
+        // Given: a price (including tax) & the tax rate
+        double price = 1.85;
+        double taxRate = 0.065;
+
+        // Then: calculate the price excluding tax
+        double amountWithoutTax = price - (price * taxRate);
+
+        // And: round the result (in a custom fashion, rather than using BigDecimal)
+        double roundedAmount = Math.round(amountWithoutTax * 100) / 100.0; // Ensure dividing by a double (to get a double result)
+
+        // Then: check the result is as expected
+        assertEquals(1.73, roundedAmount);
+    }
 }
