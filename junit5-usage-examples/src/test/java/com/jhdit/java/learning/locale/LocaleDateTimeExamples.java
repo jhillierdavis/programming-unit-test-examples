@@ -26,14 +26,16 @@ public class LocaleDateTimeExamples {
 
     @Test
     public void timeZoneDifference() {
+        // Setup: different geographic timezones
         ZoneId zoneForLondon = ZoneId.of("Europe/London");
         ZoneId zoneForSeattle = ZoneId.of("America/Los_Angeles"); // use for Seattle / PST (Pacific Standard Time)
 
-
+        // When: local time determined for a specific date/time
         LocalDateTime localDateTime = LocalDateTime.of(2020, 12, 25, 12, 0, 0);
         ZonedDateTime londonDateTime = ZonedDateTime.of(localDateTime, zoneForLondon);
         ZonedDateTime seattleDateTime = londonDateTime.withZoneSameInstant(zoneForSeattle);
 
+        // Then: offset (from UTC/GMT) is as expected
         assertEquals(0, londonDateTime.getOffset().getTotalSeconds());
         assertEquals(-28800, seattleDateTime.getOffset().getTotalSeconds()); // 8 hours = 28,800 seconds
     }
