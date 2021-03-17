@@ -9,7 +9,7 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LocaleFormattingExamples {
+public class LocaleCurrencyFormattingExamples {
 
     @ParameterizedTest(name = "{index} => inputCurrency={0}, expectedResults={1}")
     @CsvSource(value={
