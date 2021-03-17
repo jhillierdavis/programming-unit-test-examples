@@ -16,7 +16,6 @@ class Example {
 }
 
 public class StaticInitializerBlockExamples {
-
     @Test
     public void explore()   {
         assertTrue(99 == Example.sharedVariable);
