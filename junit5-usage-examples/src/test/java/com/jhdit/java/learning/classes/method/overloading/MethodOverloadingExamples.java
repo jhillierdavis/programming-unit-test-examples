@@ -1,4 +1,4 @@
-package com.jhdit.java.learning.classes.method_overloading;
+package com.jhdit.java.learning.classes.method.overloading;
 
 import org.junit.jupiter.api.Test;
 
