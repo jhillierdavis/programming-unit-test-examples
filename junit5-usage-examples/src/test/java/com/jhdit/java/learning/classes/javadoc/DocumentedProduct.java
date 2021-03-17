@@ -4,13 +4,15 @@ import java.math.BigDecimal;
 
 import static java.math.RoundingMode.HALF_UP;
 
+// Example of Javadoc applied to a class.
+
 /**
  * {@code DocumentedProduct} class represents properties and behaviours of product objects in the product catalogue.
  * <br>
  * Each product has an id, name and price.
  * <br>
  * Each product can have a discount, calculated based on a {@link #DISCOUNT_RATE discount rate}
- * @Version 1.0
+ * @version 1.0
  * @author John Smith
  */
 
