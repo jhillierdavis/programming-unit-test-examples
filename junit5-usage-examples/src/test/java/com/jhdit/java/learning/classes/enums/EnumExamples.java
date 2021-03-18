@@ -4,6 +4,7 @@ package com.jhdit.java.learning.classes.enums;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ChessGameUnit {
     enum Side { WHITE, BLACK }
@@ -43,7 +44,7 @@ class ChessGameUnit {
 public class EnumExamples {
 
     @Test
-    public void exploreEnums()  {
+    public void exploreChessPieceEnum()  {
         // Given: a constructed chess game unit
         ChessGameUnit piece = new ChessGameUnit(ChessGameUnit.Side.WHITE, ChessGameUnit.Unit.KNIGHT);
 
@@ -52,5 +53,27 @@ public class EnumExamples {
         assertEquals(ChessGameUnit.Unit.KNIGHT, piece.getUnit());
         assertEquals("Horse", piece.getUnit().label);
         assertEquals(3, piece.getUnit().relativeValue);
+    }
+
+    @Test
+    public void exploreRatingEnum() {
+        // Given: a rated product
+        RatedProduct product = new RatedProduct(101, "An item", 3.99, Rating.FOUR_STAR);
+
+        // Then: the rating can be retrieved as expected
+//        System.out.println("Rated product: " + product);
+        assertEquals(Rating.FOUR_STAR, product.getRating());
+
+        // And: string representation includes star rating characters
+        assertEquals("RatedProduct {id=101 , name=An item , price=3.99 , rating=★★★★☆}", product.toString());
+
+        // When: we create an unrated product
+        product = new RatedProduct(202, "A new item", 5.50);
+
+        // Then: rating is NO_RATING & display has no stars
+        assertEquals(Rating.NOT_RATED, product.getRating());
+        String str = product.toString();
+        // assertEquals("RatedProduct {id=202 , name=A new item , price=5.5 , rating=☆☆☆☆☆}", product.toString());
+        assertTrue(str.contains("rating=☆☆☆☆☆"));
     }
 }
