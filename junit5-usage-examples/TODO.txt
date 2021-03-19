@@ -2,11 +2,8 @@ Next Tasks
 ==========
 * Examples of use of resource bundles (for localised messages e.g in French, English etc.)
 * Date/time formatting of output for date/time in different time zones.
-* Classes
-* Final
-* Static
-* Constants - static + final
 
 
 Recently Completed
 ==================
+* varargs
