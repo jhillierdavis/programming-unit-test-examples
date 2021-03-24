@@ -2,8 +2,8 @@ import pytest
 
 """
 
-Unit Tests using PyTest
------------------------
+Unit Tests using PyTest as a unit test framework
+------------------------------------------------
 
 Exploration via examples of:
   
