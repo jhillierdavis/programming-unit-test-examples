@@ -4,7 +4,8 @@ import os.path
 
 
 """
-Unit Tests using PyTest: 
+Unit Tests, using PyTest, exploring JSON (JavaScript Object Notation) functionality 
+-----------------------------------------------------------------------------------
 
 * JSON deserialization/unmarshalling examples
 * JSON serialization/marshalling examples
