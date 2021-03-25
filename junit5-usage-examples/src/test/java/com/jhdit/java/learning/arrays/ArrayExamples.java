@@ -3,7 +3,6 @@ package com.jhdit.java.learning.arrays;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Explore Java array behaviour
@@ -13,8 +12,8 @@ public class ArrayExamples {
 
     private int arraySum(int[] arrayValues) {
         int sum = 0;
-        for (int i=0; i < arrayValues.length; i++)  {
-            sum += arrayValues[i];
+        for (int arrayValue : arrayValues) {
+            sum += arrayValue;
         }
         return sum;
     }
@@ -28,12 +27,12 @@ public class ArrayExamples {
         firstPrimes[2] = 5;
         firstPrimes[3] = 7;
 
-        // Setup: alternative array declaration (brackets after type) & simpler initialisation
+        // Setup: alternative array declaration (brackets after type, C-Style) & simpler initialisation
         int morePrimes[] = { 11, 13, 17, 19 };
 
         // Then: expect
-        assertTrue(17 == arraySum(firstPrimes));
-        assertTrue(60 == arraySum(morePrimes));
+        assertEquals(arraySum(firstPrimes), 17);
+        assertEquals(arraySum(morePrimes), 60);
     }
 
     @Test
