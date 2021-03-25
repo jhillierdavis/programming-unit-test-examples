@@ -2,6 +2,7 @@ package com.jhdit.java.learning.arrays;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -19,7 +20,7 @@ public class ArrayExamples {
     }
 
     @Test
-    public void arrayDeclaration()  {
+    public void arrayOfPrimitiveValuesDeclarationAndInitialisation()  {
         // Setup: array declaration & basic initialisation
         int[] firstPrimes = new int[4];
         firstPrimes[0] = 2;
@@ -33,5 +34,15 @@ public class ArrayExamples {
         // Then: expect
         assertTrue(17 == arraySum(firstPrimes));
         assertTrue(60 == arraySum(morePrimes));
+    }
+
+    @Test
+    public void arrayOfStringValuesDeclarationAndInitialisation()    {
+        // Setup:
+        String[] strArray = {"Alpha", "Beta", "Gamma"};
+
+        // Then:
+        assertEquals(3, strArray.length);
+        assertEquals("Gamma", strArray[strArray.length -1]);
     }
 }
