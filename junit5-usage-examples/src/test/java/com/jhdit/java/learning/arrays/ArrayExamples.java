@@ -2,6 +2,8 @@ package com.jhdit.java.learning.arrays;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -43,5 +45,18 @@ public class ArrayExamples {
         // Then:
         assertEquals(3, strArray.length);
         assertEquals("Gamma", strArray[strArray.length -1]);
+    }
+
+    @Test
+    public void arraySort() {
+        // Setup: declaration
+        String[] strArrayToSort;
+
+        // Setup: initialize - NB: needs new String[] since not initialized at declaration
+        strArrayToSort = new String[] {"One", "Two", "Three", "Four", "Five"};
+
+        Arrays.sort(strArrayToSort);
+        assertEquals("Five", strArrayToSort[0]);
+        assertEquals("Two", strArrayToSort[strArrayToSort.length - 1]);
     }
 }
