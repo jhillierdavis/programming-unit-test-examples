@@ -41,6 +41,8 @@ def test_substring():
 	assert "late" == input[7:11]
 	
 def test_replace():
+	"Explore sub-string replacement in Python"
+
 	# Given: a test string
 	input = '"Quoted"'
 	
@@ -50,4 +52,13 @@ def test_replace():
 	#And: further examples
 	assert "Transformed".replace("form", "ferr") == "Transferred"
 	assert "Zoom".replace("o","ooo") == "Zoooooom"
-	
+
+def test_contains():
+	"Explore how to find out whether a string contains another (sub-string) in Python"
+
+	# Given: a test string
+	input = "Live in the present!"
+
+	assert "present" in input
+	assert "absent" not in input
+
