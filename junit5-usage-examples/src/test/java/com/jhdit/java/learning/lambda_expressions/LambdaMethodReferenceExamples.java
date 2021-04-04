@@ -9,7 +9,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Examples of using Java Lambda Method References (e.g. String::compareToIgnoreCase )
+ * Examples of using Java Lambda Method References
+ *
+ * e.g. use String::compareToIgnoreCase in Comparator, where it is semantically identical to 'compareTo' (comparing String)
  */
 
 class TextFilter {
