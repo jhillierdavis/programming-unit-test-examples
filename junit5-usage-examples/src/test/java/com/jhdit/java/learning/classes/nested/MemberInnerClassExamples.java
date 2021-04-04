@@ -23,6 +23,10 @@ class Product {
 class Basket {
     private Set<BasketItem> items = new HashSet<>();
 
+    /**
+     * Embedded class representing basic items
+     */
+
     class BasketItem {
         private Product product;
         private int quantity;
@@ -41,7 +45,7 @@ class Basket {
 
     private BasketItem findItemByName(String name)   {
         for (BasketItem item: items)    {
-            if (item.product.getName() == name) {
+            if (item.product.getName().equals(name)) {
                 return item;
             }
         }
