@@ -3,7 +3,6 @@ package com.jhdit.java.learning.lambda_expressions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,7 +54,7 @@ public class LambdaMethodReferenceExamples {
 
         // When: sorted via a method reference
         TextFilter filter = new TextFilter(); // NB: need an instance to reference a non-static method
-        Collections.sort(names, filter::sortText);
+        names.sort(filter::sortText);
         // Collections.sort(names, (s1,s2) -> filter.sortText(s1,s2)); // Equivalent using Lambda expression
 
         // Then: collection sequential order is now as desired
@@ -71,7 +70,7 @@ public class LambdaMethodReferenceExamples {
         assertEquals("Beta", names.get(0));
 
         // When: sorted via a method reference
-        Collections.sort(names, String::compareToIgnoreCase);
+        names.sort(String::compareToIgnoreCase);
 
 
         // Then: collection sequential order is now as desired
