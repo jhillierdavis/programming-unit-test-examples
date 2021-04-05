@@ -46,12 +46,13 @@ public class StreamExamples {
 
     @Test
     void exploreStreamPipelineElements()   {
+        // Given: a list of populated Product objects
         List<Product> products = new ArrayList<>();
         products.add(new Product("Alpha"));
         products.add(new Product("Beta"));
         products.add(new Product("Gamma"));
 
-        // Then:
+        // Then: check variants of the same functionality using different implementations of Java streams
         assertEquals(14, sumNonWhiteSpaceCharsUsingLambdaPipeline(products));
         assertEquals(14, sumNonWhiteSpaceCharsUsingLambdaPipelineWithMethodReferences(products));
         assertEquals(14, inParallelSumNonWhiteSpaceCharsUsingLambdaPipelineWithMethodReferences(products));
