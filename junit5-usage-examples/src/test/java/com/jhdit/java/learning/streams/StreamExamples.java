@@ -10,6 +10,10 @@ import java.util.function.UnaryOperator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Explore different application of Java Streams e.g. to sum the total non-space characters of all product names in a list of products
+ */
+
 class Product {
     String name;
 
