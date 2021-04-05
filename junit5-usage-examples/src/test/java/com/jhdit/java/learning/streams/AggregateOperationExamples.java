@@ -35,9 +35,7 @@ public class AggregateOperationExamples {
         String[] empty  = {};
 
         // Then: use stream aggregate operations results in exception being thrown
-        assertThrows(NoSuchElementException.class, () -> {
-            Arrays.stream(empty).mapToInt(String::length).max().getAsInt();
-        });
+        assertThrows(NoSuchElementException.class, () -> Arrays.stream(empty).mapToInt(String::length).max().getAsInt());
         assertThrows(NoSuchElementException.class, () -> {
             assertEquals(3, Arrays.stream(empty).mapToInt(String::length).min().getAsInt());
         });
