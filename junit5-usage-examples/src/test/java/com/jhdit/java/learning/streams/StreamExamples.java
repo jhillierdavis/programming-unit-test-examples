@@ -23,19 +23,21 @@ class Product {
 }
 
 public class StreamExamples {
+    // Member variables for convenience (to avoid declaration repetition in method variants)
+    private Function<Product, String> nameMapper = p -> p.getName();
+    private UnaryOperator<String> trimMapper = s -> s.trim();
+    private ToIntFunction<String> lengthMapper = s -> s.length();
 
     private int sumNonWhiteSpaceCharsUsingLambdaPipeline(List<Product> products) {
-        Function<Product, String> nameMapper = p -> p.getName();
-        UnaryOperator<String> trimMapper = s -> s.trim();
-        ToIntFunction<String> lengthMapper = s -> s.length();
         return products.stream().map(nameMapper.andThen(trimMapper)).mapToInt(lengthMapper).sum();
     }
 
     private int sumNonWhiteSpaceCharsUsingLambdaPipelineWithMethodReferences(List<Product> products) {
-        Function<Product, String> nameMapper = Product::getName;
-        UnaryOperator<String> trimMapper = String::trim;
-        ToIntFunction<String> lengthMapper = String::length;
         return products.stream().map(nameMapper.andThen(trimMapper)).mapToInt(lengthMapper).sum();
+    }
+
+    private int inParallelSumNonWhiteSpaceCharsUsingLambdaPipelineWithMethodReferences(List<Product> products) {
+        return products.parallelStream().map(nameMapper.andThen(trimMapper)).mapToInt(lengthMapper).sum();
     }
 
 
@@ -49,5 +51,6 @@ public class StreamExamples {
         // Then:
         assertEquals(14, sumNonWhiteSpaceCharsUsingLambdaPipeline(products));
         assertEquals(14, sumNonWhiteSpaceCharsUsingLambdaPipelineWithMethodReferences(products));
+        assertEquals(14, inParallelSumNonWhiteSpaceCharsUsingLambdaPipelineWithMethodReferences(products));
     }
 }

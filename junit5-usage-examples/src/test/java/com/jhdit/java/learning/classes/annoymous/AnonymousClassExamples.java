@@ -24,8 +24,10 @@ public class AnonymousClassExamples {
 
     @Test
     void explore()  {
+        // Setup: declare a list of products
         List<Product> products = new ArrayList<>();
 
+        // Given: a populated list
         products.add(new Product("Gamma", 9.99));
         products.add(new Product("Beta", 1.99));
         products.add(new Product("Alpha", 14.99));
