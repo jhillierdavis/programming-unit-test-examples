@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.OptionalDouble;
-import java.util.OptionalInt;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,9 +24,7 @@ public class AggregateOperationExamples {
         assertEquals(18, Arrays.stream(colours).mapToInt(String::length).sum());
         OptionalDouble optionalMeanLength = Arrays.stream(colours).mapToInt(String::length).average();
         assertEquals(4.5, optionalMeanLength.isPresent() ? optionalMeanLength.getAsDouble() : 0);
-        OptionalInt optionalInt = Arrays.stream(colours).mapToInt(String::length).max();
-        assertEquals(6, optionalInt.isPresent() ? optionalInt.getAsInt() : 0);
-        optionalInt = Arrays.stream(colours).mapToInt(String::length).min();
-        assertEquals(3, optionalInt.isPresent() ? optionalInt.getAsInt() : 0);
+        assertEquals(6, Arrays.stream(colours).mapToInt(String::length).max().getAsInt());
+        assertEquals(3, Arrays.stream(colours).mapToInt(String::length).min().getAsInt());
     }
 }
