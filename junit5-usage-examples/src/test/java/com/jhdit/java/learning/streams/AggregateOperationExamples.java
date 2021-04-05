@@ -3,6 +3,7 @@ package com.jhdit.java.learning.streams;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.OptionalDouble;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,5 +27,19 @@ public class AggregateOperationExamples {
         assertEquals(4.5, optionalMeanLength.isPresent() ? optionalMeanLength.getAsDouble() : 0);
         assertEquals(6, Arrays.stream(colours).mapToInt(String::length).max().getAsInt());
         assertEquals(3, Arrays.stream(colours).mapToInt(String::length).min().getAsInt());
+    }
+
+    @Test
+    void exploreAggregateOperationsOnEmptyArray()    {
+        // Given: an empty array of String
+        String[] empty  = {};
+
+        // Then: use stream aggregate operations results in exception being thrown
+        assertThrows(NoSuchElementException.class, () -> {
+            Arrays.stream(empty).mapToInt(String::length).max().getAsInt();
+        });
+        assertThrows(NoSuchElementException.class, () -> {
+            assertEquals(3, Arrays.stream(empty).mapToInt(String::length).min().getAsInt());
+        });
     }
 }
