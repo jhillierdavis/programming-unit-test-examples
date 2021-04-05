@@ -24,12 +24,20 @@ class Product {
 
 public class StreamExamples {
 
-    private int sumNotWhiteSpaceChars(List<Product> products) {
+    private int sumNonWhiteSpaceCharsUsingLambdaPipeline(List<Product> products) {
         Function<Product, String> nameMapper = p -> p.getName();
         UnaryOperator<String> trimMapper = s -> s.trim();
         ToIntFunction<String> lengthMapper = s -> s.length();
         return products.stream().map(nameMapper.andThen(trimMapper)).mapToInt(lengthMapper).sum();
     }
+
+    private int sumNonWhiteSpaceCharsUsingLambdaPipelineWithMethodReferences(List<Product> products) {
+        Function<Product, String> nameMapper = Product::getName;
+        UnaryOperator<String> trimMapper = String::trim;
+        ToIntFunction<String> lengthMapper = String::length;
+        return products.stream().map(nameMapper.andThen(trimMapper)).mapToInt(lengthMapper).sum();
+    }
+
 
     @Test
     void exploreStreamPipelineElements()   {
@@ -39,6 +47,7 @@ public class StreamExamples {
         products.add(new Product("Gamma"));
 
         // Then:
-        assertEquals(14, sumNotWhiteSpaceChars(products));
+        assertEquals(14, sumNonWhiteSpaceCharsUsingLambdaPipeline(products));
+        assertEquals(14, sumNonWhiteSpaceCharsUsingLambdaPipelineWithMethodReferences(products));
     }
 }
