@@ -48,6 +48,16 @@ public class CollectorsExamples {
         return Arrays.stream(values).collect( Collectors.summarizingInt( s -> s.length() ) ).getAverage();
     }
 
+    private String meanLengthAsString(String[] values) {
+        // example of use of Collectors.collectingAndThen
+        return Arrays.stream(values).collect(
+                    Collectors.collectingAndThen(
+                        Collectors.summarizingInt(s -> s.length() ),
+                        n -> "The average (mean) value is " + n.getAverage()
+                    )
+                );
+    }
+
     @Test
     void exploreCollectorsSummarising()    {
         // Check: summarising aggregations can be preformed (e.g. sum, min, max)
@@ -56,6 +66,7 @@ public class CollectorsExamples {
         assertEquals(6, maxLength(colours));
         assertEquals(3, minLength(colours));
         assertEquals(4.5, meanLength(colours));
+        assertEquals("The average (mean) value is 4.5", meanLengthAsString(colours));
     }
 
     @Test
