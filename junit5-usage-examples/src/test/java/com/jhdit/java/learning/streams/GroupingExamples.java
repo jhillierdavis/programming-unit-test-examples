@@ -59,8 +59,7 @@ public class GroupingExamples {
         // And: further grouping
         List<Food> oneYearFoods = dateGroupMap.get(honey.getBestBefore());
         assertEquals(1, oneYearFoods.size());
-        Optional<Food> first = oneYearFoods.stream().findFirst();
-        assertEquals("Honey", first.isPresent() ? first.get().getName() : "");
+        assertEquals("Honey", oneYearFoods.stream().findFirst().get().getName());
         assertTrue(oneYearFoods.contains(honey));
     }
 }
