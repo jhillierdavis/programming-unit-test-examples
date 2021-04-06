@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,13 +58,20 @@ public class AggregateOperationExamples {
         return Arrays.stream(values).map(String::toString).reduce(initialValue, (s1,s2) -> s1 + " " + s2);
     }
 
+    private String concatenateViaCollectors(String[] values) {
+        return Arrays.stream(values).collect( Collectors.mapping(s -> s.toString(), Collectors.joining(" ")));
+    }
+
+
     @Test
     void exploreReduceForCustomAggregation()    {
         // Given: an array of String
         String[] colours  = {"Red", "Yellow", "Green", "Blue"};
 
+        // Then: concatenation can be performed using Streams in various ways e.g.:
         assertEquals("Red Yellow Green Blue", concatenateViaStream(colours));
         assertEquals("Red Yellow Green Blue", concatenateViaParallelStream(colours));
         assertEquals("Purple Red Yellow Green Blue", concatenateViaStreamWithDefaultInitialValue(colours, "Purple"));
+        assertEquals("Red Yellow Green Blue", concatenateViaCollectors(colours)); // See @CollectorsExamples for more
     }
 }
