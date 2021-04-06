@@ -15,7 +15,7 @@ interface Vehicle {
 }
 
 class AbstractVehicle implements Vehicle  {
-    private String name;
+    private final String name;
 
     AbstractVehicle(String name)   {
         this.name = name;
@@ -45,7 +45,6 @@ class Plane extends AbstractVehicle {
 
 public class PartitioningExamples {
 
-
     @Test
     void explorePartitioning()  {
         // Setup: List containing 2 types of vehicles (cars & planes)
@@ -54,7 +53,7 @@ public class PartitioningExamples {
         jamesBondVehicles.add(examplePlane);
         Car exampleCar = new Car("Aston Martin DB5");
         jamesBondVehicles.add(exampleCar);
-        jamesBondVehicles.add(new Plane("BD-5J Acrostar Microjet"));
+        jamesBondVehicles.add(new Plane("BD-5J 'Acrostar' Microjet"));
         jamesBondVehicles.add(new Car("Lotus Esprit"));
         jamesBondVehicles.add(new Car("Aston Martin DBS")); // e.g. On Her Majesty's Secret Service
 
