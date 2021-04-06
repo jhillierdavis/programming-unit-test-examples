@@ -38,7 +38,8 @@ public class FlatMappingExamples {
         assertTrue(evenNumbers.containsAll(expectedEvenNumbers));
     }
 
-    void exploreFlatMap() {
+    @Test
+    void exploreCollectorsFlatMapping() {
         Customer anne = new Customer("Anne");
         Customer bella = new Customer("Bella");
         Item coffee = new Item("Coffee", 1.50);
@@ -54,12 +55,17 @@ public class FlatMappingExamples {
         List<Order> orders = List.of(order1, order2, order3, order4);
 
         // TODO: Get this working!
-        /*
-        Map<Customer, Set<Item>> customerItems = orders.collect(
-                Collectors.groupingBy(Order::getCustomer),
-                Collectors.flatMapping(o -> o.getItems().stream(), Collectors.toSet()))
+
+        Map<Customer, Set<Item>> customerItems = orders.stream().collect(
+                Collectors.groupingBy(
+                        Order::getCustomer,
+                        Collectors.flatMapping(order -> order.getItems().stream(), Collectors.toSet())
+                )
         );
-         */
+
+        Set<Item> flatMapAnneItems = customerItems.get(anne);
+        assertEquals(3, flatMapAnneItems.size());
+        assertTrue(flatMapAnneItems.containsAll(List.of(tea, coffee, cake)));
     }
 }
 
@@ -105,11 +111,7 @@ class Order {
         return this.customer;
     }
 
-    ;
-
     public List<Item> getItems() {
         return this.items;
     }
-
-    ;
 }
