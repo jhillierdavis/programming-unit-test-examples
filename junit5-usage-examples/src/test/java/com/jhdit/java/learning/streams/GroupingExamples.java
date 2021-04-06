@@ -47,7 +47,7 @@ public class GroupingExamples {
 
         // When: grouping by a criteria (e.g. best before date)
         Map<LocalDate, List<Food>> dateGroupMap = foods.stream().collect(
-                Collectors.groupingBy( f -> f.getBestBefore() )
+                Collectors.groupingBy( Food::getBestBefore )
         );
 
         // Then: grouping by date are returned
@@ -59,7 +59,8 @@ public class GroupingExamples {
         // And: further grouping
         List<Food> oneYearFoods = dateGroupMap.get(honey.getBestBefore());
         assertEquals(1, oneYearFoods.size());
-        assertEquals("Honey", oneYearFoods.stream().findFirst().get().getName());
+        Optional<Food> first = oneYearFoods.stream().findFirst();
+        assertEquals("Honey", first.isPresent() ? first.get().getName() : "");
         assertTrue(oneYearFoods.contains(honey));
     }
 }
