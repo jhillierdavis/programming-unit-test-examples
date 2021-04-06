@@ -59,7 +59,7 @@ public class CollectorsExamples {
     }
 
     @Test
-    void exploreCollectorsFiltering()   {
+    void exploreCollectorsGathering()   {
         // When: a filtering is applied & collected
         List<String> results = Arrays.stream(colours).filter(s -> s.toLowerCase().contains("r") ).collect(Collectors.toList());
 
