@@ -49,11 +49,21 @@ public class AggregateOperationExamples {
         return Arrays.stream(values).map(String::toString).reduce((s1,s2) -> s1 + " " + s2).get();
     }
 
+    private String concatenateViaParallelStream(String[] values) {
+        return Arrays.stream(values).parallel().map(String::toString).reduce((s1,s2) -> s1 + " " + s2).get();
+    }
+
+    private String concatenateViaStreamWithDefaultInitialValue(String[] values, String initialValue) {
+        return Arrays.stream(values).map(String::toString).reduce(initialValue, (s1,s2) -> s1 + " " + s2);
+    }
+
     @Test
     void exploreReduceForCustomAggregation()    {
         // Given: an array of String
         String[] colours  = {"Red", "Yellow", "Green", "Blue"};
 
         assertEquals("Red Yellow Green Blue", concatenateViaStream(colours));
+        assertEquals("Red Yellow Green Blue", concatenateViaParallelStream(colours));
+        assertEquals("Purple Red Yellow Green Blue", concatenateViaStreamWithDefaultInitialValue(colours, "Purple"));
     }
 }
