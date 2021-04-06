@@ -27,6 +27,10 @@ public class AggregateOperationExamples {
         assertEquals(4.5, optionalMeanLength.isPresent() ? optionalMeanLength.getAsDouble() : 0);
         assertEquals(6, Arrays.stream(colours).mapToInt(String::length).max().getAsInt());
         assertEquals(3, Arrays.stream(colours).mapToInt(String::length).min().getAsInt());
+        // Obtain min/max baed on alphabetical ordering
+        assertEquals("Yellow", Arrays.stream(colours).max(String::compareTo).get());
+        assertEquals("Blue", Arrays.stream(colours).min(String::compareTo).get());
+
     }
 
     @Test
@@ -39,5 +43,17 @@ public class AggregateOperationExamples {
         assertThrows(NoSuchElementException.class, () -> {
             assertEquals(3, Arrays.stream(empty).mapToInt(String::length).min().getAsInt());
         });
+    }
+
+    private String concatenateViaStream(String[] values) {
+        return Arrays.stream(values).map(String::toString).reduce((s1,s2) -> s1 + " " + s2).get();
+    }
+
+    @Test
+    void exploreReduceForCustomAggregation()    {
+        // Given: an array of String
+        String[] colours  = {"Red", "Yellow", "Green", "Blue"};
+
+        assertEquals("Red Yellow Green Blue", concatenateViaStream(colours));
     }
 }
