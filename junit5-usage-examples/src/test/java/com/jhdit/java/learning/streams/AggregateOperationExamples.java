@@ -15,6 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AggregateOperationExamples {
 
+    private double calculateMeanStringLength(String[] values) {
+        OptionalDouble optionalMeanLength = Arrays.stream(values).mapToInt(String::length).average();
+        return optionalMeanLength.isPresent() ? optionalMeanLength.getAsDouble() : 0;
+    }
+
     @Test
     void exploreAggregateOperations()    {
         // Given: an array of String
@@ -24,11 +29,11 @@ public class AggregateOperationExamples {
         assertEquals(1, Arrays.stream(colours).filter(s -> s.indexOf('R') != -1).count());
         assertEquals(2, Arrays.stream(colours).filter(s -> s.toLowerCase().indexOf('r') != -1).count());
         assertEquals(18, Arrays.stream(colours).mapToInt(String::length).sum());
-        OptionalDouble optionalMeanLength = Arrays.stream(colours).mapToInt(String::length).average();
-        assertEquals(4.5, optionalMeanLength.isPresent() ? optionalMeanLength.getAsDouble() : 0);
+        assertEquals(4.5, calculateMeanStringLength(colours));
         assertEquals(6, Arrays.stream(colours).mapToInt(String::length).max().getAsInt());
         assertEquals(3, Arrays.stream(colours).mapToInt(String::length).min().getAsInt());
-        // Obtain min/max baed on alphabetical ordering
+
+        // And: Obtain min/max based on alphabetical ordering
         assertEquals("Yellow", Arrays.stream(colours).max(String::compareTo).get());
         assertEquals("Blue", Arrays.stream(colours).min(String::compareTo).get());
 
