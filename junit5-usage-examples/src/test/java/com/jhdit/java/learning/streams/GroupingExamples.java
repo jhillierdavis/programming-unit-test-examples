@@ -6,14 +6,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Food {
-    private String name;
-    private LocalDate bestBefore;
+    private final String name;
+    private final LocalDate bestBefore;
 
     Food(String name, LocalDate bestBefore) {
         this.name = name;
@@ -58,6 +59,8 @@ public class GroupingExamples {
         // And: further grouping
         List<Food> oneYearFoods = dateGroupMap.get(honey.getBestBefore());
         assertEquals(1, oneYearFoods.size());
+        Optional<Food> first = oneYearFoods.stream().findFirst();
+        assertEquals("Honey", first.isPresent() ? first.get().getName() : "");
         assertTrue(oneYearFoods.contains(honey));
     }
 }
