@@ -16,27 +16,48 @@ public class ProgramFlowWhenRuntimeException {
     @Test
     void exploreProgramFlow()   {
         assertThrows(NullPointerException.class, () -> {
-            try {
-                foo();
-                notReached();
-            } catch (IOException ioe)   {
-                notReached();
-            } finally {
-                System.out.println("Sequence: 'finally' action executed");
-            }
-            notReached();
+            flowNotCatchingRuntimeException();
         });
     }
 
-    private void foo() throws IOException {
-        System.out.println("Sequence: foo() method executed");
+    @Test
+    void exploreProgramFlowCatchingRuntimeException()   {
+        String prefix = "exploreProgramFlowCatchingRuntimeException sequence:";
+        try {
+            triggerRuntimeException(prefix);
+            checkNotReached();
+        } catch (IOException ioe) {
+            checkNotReached();
+        } catch (Exception e) {
+            System.out.printf("%s caught runtime exception %s%n", prefix, e);
+        } finally {
+            System.out.printf("%s 'finally' action executed%n", prefix);
+        }
+        System.out.printf("%s last statement action executed%n", prefix);
+    }
+
+    private void flowNotCatchingRuntimeException() {
+        String prefix = "flowNotCatchingRuntimeException sequence:";
+        try {
+            triggerRuntimeException(prefix);
+            checkNotReached();
+        } catch (IOException ioe)   {
+            checkNotReached();
+        } finally {
+            System.out.printf("%s 'finally' action executed%n", prefix);
+        }
+        checkNotReached();
+    }
+
+    private void triggerRuntimeException(String prefix) throws IOException {
+        System.out.printf("%s foo() method executed%n", prefix);
         if (true)   {
             throw new NullPointerException();
         }
         throw new IOException();
     }
 
-    private void notReached()    {
+    private void checkNotReached()    {
         fail(); // Fail the unit test if reached
     }
 }
