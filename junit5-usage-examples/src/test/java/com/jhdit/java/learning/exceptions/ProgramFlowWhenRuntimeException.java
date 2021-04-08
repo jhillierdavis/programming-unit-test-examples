@@ -50,7 +50,7 @@ public class ProgramFlowWhenRuntimeException {
     }
 
     private void triggerRuntimeException(String prefix) throws IOException {
-        System.out.printf("%s foo() method executed%n", prefix);
+        System.out.printf("%s triggerRuntimeException() method executed%n", prefix);
         if (true)   {
             throw new NullPointerException();
         }
