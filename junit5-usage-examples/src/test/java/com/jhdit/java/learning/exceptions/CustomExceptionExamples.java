@@ -13,9 +13,7 @@ public class CustomExceptionExamples {
 
     @Test
     void exploreCustomRuntimeException() {
-        assertThrows(CustomRuntimeException.class, () -> {
-            triggerCustomRuntimeException();
-        });
+        assertThrows(CustomRuntimeException.class, () -> triggerCustomRuntimeException());
     }
 
     @Test
