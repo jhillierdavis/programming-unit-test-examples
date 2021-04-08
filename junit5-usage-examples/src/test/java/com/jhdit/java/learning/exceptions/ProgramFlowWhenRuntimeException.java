@@ -14,13 +14,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class ProgramFlowWhenRuntimeException {
 
     @Test
-    void exploreProgramFlow()   {
-        assertThrows(NullPointerException.class, () -> {
-            flowNotCatchingRuntimeException();
-        });
-    }
-
-    @Test
     void exploreProgramFlowCatchingRuntimeException()   {
         String prefix = "exploreProgramFlowCatchingRuntimeException sequence:";
         try {
@@ -34,6 +27,13 @@ public class ProgramFlowWhenRuntimeException {
             System.out.printf("%s 'finally' action executed%n", prefix);
         }
         System.out.printf("%s last statement action executed%n", prefix);
+    }
+
+    @Test
+    void exploreProgramFlowNotCatchingRuntimeException()   {
+        assertThrows(NullPointerException.class, () -> {
+            flowNotCatchingRuntimeException();
+        });
     }
 
     private void flowNotCatchingRuntimeException() {
