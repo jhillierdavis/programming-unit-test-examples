@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  * Exploration of program flow when checked exception thrown.
  */
 
-public class ProgramFlowWhenCheckedException {
+public class ProgramFlowWhenCheckedExceptionExamples {
 
     @Test
     void exploreProgramWithCheckedExceptionThatMustBeHandledOrDeclaredThrown()   {

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  * Exploration of program flow when runtime exception thrown.
  */
 
-public class ProgramFlowWhenRuntimeException {
+public class ProgramFlowWhenRuntimeExceptionExamples {
 
     @Test
     void exploreProgramFlowCatchingRuntimeException()   {
