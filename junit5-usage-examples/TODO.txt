@@ -2,12 +2,15 @@ Next Tasks
 ==========
 * Examples of use of resource bundles (for localised messages e.g in French, English etc.)
 * Date/time formatting of output for date/time in different time zones.
-* Abstract classes
-* Interfaces - multiple inheritance
-* Generics
 * Comparable, comparator, clone?
+* Logging (using standard Java logging)
+* Exceptions - checked & unchecked, execution path, finally, try with catch etc.
+* Java IO
 
 
 Recently Completed
 ==================
+* Abstract classes
+* Interfaces - multiple inheritance
+* Generics
 * varargs
