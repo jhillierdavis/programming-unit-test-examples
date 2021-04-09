@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Explore auto-closure (implicit, rather than explicit closing of resources) using try-with-resources approach.
+ *
+ * NB: try-with-resources also referred to as try with parameters.
  */
 
 public class TryWithResourcesExamples {
