@@ -20,7 +20,7 @@ public class TryWithResourcesExamples {
     }
 
     @Test
-    void withoutAutoClosure() {
+    void withoutAutoClosureForComparisonExample() {
         // Setup: a file reader
         WrappedBufferedReader in = null;
 
@@ -34,6 +34,8 @@ public class TryWithResourcesExamples {
             System.out.printf("Failed to read text line from file %s%n", fnfe);
         } catch (IOException ioe) {
             System.out.printf("Error opening file %s%n", ioe);
+        } catch (Exception e) {
+                System.out.printf("Runtime exception accessing file %s%n", e);
         } finally {
             try {
                 in.close();
@@ -47,7 +49,7 @@ public class TryWithResourcesExamples {
     }
 
     @Test
-    void withAutoClosure()  {
+    void withAutoClosureAndSuppressedExceptionsExample()  {
         // Setup: a file reader reference
         WrappedBufferedReader wrappedBufferedReader = null;
 
@@ -61,6 +63,14 @@ public class TryWithResourcesExamples {
             System.out.printf("Failed to read text line from file %s%n", fnfe);
         } catch (IOException ioe) {
             System.out.printf("Error opening file %s%n", ioe);
+        } catch (Exception e) {
+            System.out.printf("Runtime exception accessing file %s%n", e);
+
+            // Handle suppressed exceptions (thrown in the implicitly formed finally block
+            Throwable[] suppressedExceptions = e.getSuppressed();
+            for (final Throwable suppressedException: suppressedExceptions) {
+                System.out.printf("Suppressed exception %s%n", suppressedException);
+            }
         }
         // NB: No need for explicit close of resources in a finally block!
 
@@ -79,7 +89,7 @@ public class TryWithResourcesExamples {
 
 class WrappedBufferedReader implements AutoCloseable  {
     private boolean isClosed = false;
-    private BufferedReader bufferedReader;
+    private final BufferedReader bufferedReader;
 
     WrappedBufferedReader(FileReader fileReader)    {
         this.bufferedReader = new BufferedReader(fileReader);
