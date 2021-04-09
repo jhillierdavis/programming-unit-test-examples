@@ -17,7 +17,7 @@ public class JavaLoggingExamples {
     private static final Logger logger = Logger.getLogger(com.jhdit.java.learning.logging.JavaLoggingExamples.class.getName());
 
     @Test
-    void logInfoMessage()   {
+    void exploreLogLevels()   {
         // When: Log level set
         logger.setLevel(Level.INFO);
 
