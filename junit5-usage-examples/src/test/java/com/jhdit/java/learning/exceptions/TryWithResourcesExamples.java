@@ -16,28 +16,27 @@ public class TryWithResourcesExamples {
 
     private File getResourceFile(String filename)   {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(filename).getFile());
-        return file;
+        return new File(classLoader.getResource(filename).getFile());
     }
 
     @Test
     void withoutAutoClosure() {
-        Boolean closed = false;
+        boolean closed = false;
         BufferedReader in = null;
         try {
             in = new BufferedReader(new FileReader(getResourceFile(TEST_TEXT_FILE)));
             String text = in.readLine();
             assertEquals("Some text for testing purposes!", text);
         } catch (FileNotFoundException fnfe) {
-            System.out.printf("Failed to read text line from file%n", fnfe);
+            System.out.printf("Failed to read text line from file %s%n", fnfe);
         } catch (IOException ioe) {
-            System.out.printf("Error opening file%n", ioe);
+            System.out.printf("Error opening file %s%n", ioe);
         } finally {
             try {
                 in.close();
                 closed = true;
-            } catch (IOException ioe)   {
-                System.out.printf("Error closing file%n", ioe);
+            } catch (Exception e)   {
+                System.out.printf("Error closing file %s%n", e);
             }
         }
         assertTrue(closed);
@@ -49,9 +48,9 @@ public class TryWithResourcesExamples {
             String text = in.readLine();
             assertEquals("Some text for testing purposes!", text);
         } catch (FileNotFoundException fnfe) {
-            System.out.printf("Failed to read text line from file%n", fnfe);
+            System.out.printf("Failed to read text line from file %s%n", fnfe);
         } catch (IOException ioe) {
-            System.out.printf("Error opening file%n", ioe);
+            System.out.printf("Error opening file %s%n", ioe);
         }
     }
 }
