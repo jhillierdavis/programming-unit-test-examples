@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 
 public class JavaLoggingExamples {
-    private static Logger logger = Logger.getLogger(com.jhdit.java.learning.logging.JavaLoggingExamples.class.getName());
+    private static final Logger logger = Logger.getLogger(com.jhdit.java.learning.logging.JavaLoggingExamples.class.getName());
 
     @Test
     void logInfoMessage()   {
