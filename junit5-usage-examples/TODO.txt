@@ -4,12 +4,12 @@ Next Tasks
 * Date/time formatting of output for date/time in different time zones.
 * Comparable, comparator, clone?
 * Logging (using standard Java logging)
-* Exceptions - checked & unchecked, execution path, finally, try with catch etc.
 * Java IO
 
 
 Recently Completed
 ==================
+* Exceptions - checked & unchecked, execution path, finally, try with catch etc.
 * Abstract classes
 * Interfaces - multiple inheritance
 * Generics
