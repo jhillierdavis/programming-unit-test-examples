@@ -5,6 +5,7 @@ Next Tasks
 * Comparable, comparator, clone?
 * Logging (using standard Java logging)
 * Java IO
+* Annotations - suppress warnings, obtaining meta-data (retention type)
 
 
 Recently Completed
