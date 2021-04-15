@@ -28,7 +28,7 @@ final class Seal {
             throw new IllegalArgumentException("NULL friends!");
         }
         this.name = name;
-        this.friends = new ArrayList<Seal>(friends);
+        this.friends = Collections.unmodifiableList(new ArrayList<Seal>(friends));
     }
 
     public String getName() { return this.name; }
