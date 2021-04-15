@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 /**
  * Use a singleton to create an object only once in memory & have it shared within an application by multiple classes / threads.
  *
- * Singletons are created as private static variables within the class (often with name insstance).
+ * Singletons are created as private static variables within the class (often with name instance).
  * They are accessed via a single public static method (often named getInstance() ), which returns the singleton instance.
- * All constructors in a singleton class are marked private (to prevent anotehr class from instantiating another version of the class).
+ * All constructors in a singleton class are marked private (to prevent another class from instantiating another version of the class).
  */
 
 class EagerSingleton {
