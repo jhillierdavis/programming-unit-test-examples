@@ -10,6 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertSame;
  * Singletons are created as private static variables within the class (often with name instance).
  * They are accessed via a single public static method (often named getInstance() ), which returns the singleton instance.
  * All constructors in a singleton class are marked private (to prevent another class from instantiating another version of the class).
+ *
+ * Examples of scenarios that could benefit from using a singleton pattern:
+ *
+ * * Manage a reusable (single) cache of objects.
+ * * Manage write access to a (single) log file.
+ * * Provide central (single) access application configuration data.
  */
 
 class EagerSingleton {
