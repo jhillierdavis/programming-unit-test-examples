@@ -21,7 +21,7 @@ class Outer {
         public static int getX() {
             return x;
         }
-         */
+        */
     }
 
     protected static class InnerOk {
@@ -34,7 +34,7 @@ class Outer {
     }
 }
 
-public class StaticRestrictionExamples  {
+public class InnerClassStaticRestrictionsExamples {
     @Test
     void exploreInnerClassUsage()   {
         // Setup:
