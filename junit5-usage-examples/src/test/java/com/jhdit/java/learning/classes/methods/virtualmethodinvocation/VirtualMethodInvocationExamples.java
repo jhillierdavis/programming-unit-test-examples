@@ -13,17 +13,16 @@ class VirtualMethodInvocationExamples {
     @Test
     void explore()  {
         Dog dog = new Dog();
-        Pet pet = dog;
 
         // Then: dog name is expected
         assertEquals("Fido", dog.name);
 
         // But: pet name variable remains 'Unnamed', even though pet references a Dog instance here!
-        assertEquals("Unnamed", pet.name);
+        assertEquals("Unnamed", ((Pet) dog).name);
 
         // However: overridden methods are invoked (irrespective of type of instance reference)
         assertEquals("Fido", dog.getName());
-        assertEquals("Fido", pet.getName());
+        assertEquals("Fido", ((Pet) dog).getName());
 
         // And: superclass details remain accessible (if you want)
         assertEquals("Unnamed", dog.getSuperclassNameVariable());
