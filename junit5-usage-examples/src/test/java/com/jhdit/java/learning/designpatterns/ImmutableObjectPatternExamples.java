@@ -33,7 +33,7 @@ final class Seal {
             throw new IllegalArgumentException("NULL friends!");
         }
         this.name = name;
-        this.friends = Collections.unmodifiableList(new ArrayList<Seal>(friends));
+        this.friends = Collections.unmodifiableList(new ArrayList<>(friends));
     }
 
     public String getName() { return this.name; }
@@ -44,15 +44,15 @@ public class ImmutableObjectPatternExamples {
     @Test
     void explore()  {
         // Setup:
-        Seal luca = new Seal("Luca", new ArrayList<Seal>());
-        Seal louise = new Seal("Luca", new ArrayList<Seal>());
-        Seal joe = new Seal("Joe", Arrays.asList(new Seal[] {luca, louise }));
+        Seal luca = new Seal("Luca", new ArrayList<>());
+        Seal louise = new Seal("Luca", new ArrayList<>());
+        Seal joe = new Seal("Joe", Arrays.asList(luca, louise));
 
         // Check: immutability of friend list (instead create a new object)
         List<Seal> friends = joe.getFriends();
         assertThrows(UnsupportedOperationException.class, () ->
         {
-            Seal steve = new Seal("Steve", new ArrayList<Seal>());
+            Seal steve = new Seal("Steve", new ArrayList<>());
             friends.add( steve );
 
         });
