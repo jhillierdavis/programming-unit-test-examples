@@ -1,24 +1,50 @@
 package com.jhdit.java.learning.classes.interfaces;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ * Example of disambiguation of default methods (with same signature) in multiple inheritance.
+ */
+
 interface Fly {
-    default void move() {
-        System.out.println("Take to the skies!");
+    default String move() {
+        return fly();
+    }
+
+    default String fly() {
+        return "fly";
     }
 }
 
 interface Swim {
-    default void move() {
-        System.out.println("Take to the water!");
+    default String move() {
+        return swim();
+    }
+
+    default String swim()  {
+        return "swim";
     }
 }
 
 interface Adaptable extends Fly, Swim {
     @Override // Needs to disambiguate
-    default void move() {
-        System.out.println("Take to the sky or the water!");
+    default String move() {
+        return fly() + " or " + swim();
     }
 }
 
+class KingFisher implements Adaptable  {}
 
 public class MultipleInheritanceAndDefaultMethodsExamples {
+
+    @Test
+    void explore()  {
+        Adaptable adaptable = new KingFisher();
+
+        assertEquals("fly", adaptable.fly());
+        assertEquals("swim", adaptable.swim());
+        assertEquals("fly or swim", adaptable.move());
+    }
 }
