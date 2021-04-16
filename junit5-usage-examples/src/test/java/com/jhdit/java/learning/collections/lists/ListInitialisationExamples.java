@@ -27,9 +27,15 @@ public class ListInitialisationExamples {
         assertEquals("java.util.Arrays$ArrayList", list.getClass().getName());
 
         // But: cannot be modified (i.e. immutable)
-        assertThrows(UnsupportedOperationException.class, () -> {
-            list.add("baz");
-        });
+        assertThrows(UnsupportedOperationException.class, () -> list.add("baz"));
+
+        /*
+         * // Equivalent to:
+         *
+         *        assertThrows(UnsupportedOperationException.class, () -> {
+         *             list.add("baz");
+         *         });
+         */
     }
 
     @Test
@@ -43,9 +49,7 @@ public class ListInitialisationExamples {
         assertEquals("java.util.ImmutableCollections$List2", list.getClass().getName());
 
         // But: cannot be modified (i.e. immutable)
-        assertThrows(UnsupportedOperationException.class, () -> {
-            list.add("baz");
-        });
+        assertThrows(UnsupportedOperationException.class, () -> list.add("baz"));
     }
 
     @Test
