@@ -1,8 +1,13 @@
 package com.jhdit.java.learning.designpatterns;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * ImmutableObjects - create read-only objects that can be safely shared & used by multiple classes / threads.
@@ -36,5 +41,20 @@ final class Seal {
 }
 
 public class ImmutableObjectPatternExamples {
-    // TODO
+    @Test
+    void explore()  {
+        // Setup:
+        Seal luca = new Seal("Luca", new ArrayList<Seal>());
+        Seal louise = new Seal("Luca", new ArrayList<Seal>());
+        Seal joe = new Seal("Joe", Arrays.asList(new Seal[] {luca, louise }));
+
+        // Check: immutability of friend list (instead create a new object)
+        List<Seal> friends = joe.getFriends();
+        assertThrows(UnsupportedOperationException.class, () ->
+        {
+            Seal steve = new Seal("Steve", new ArrayList<Seal>());
+            friends.add( steve );
+
+        });
+    }
 }
