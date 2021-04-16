@@ -15,6 +15,7 @@ enum MyEnumWithStaticValues {
         anotherStaticValue = 100;
     }
 
+    // NB: Constructor is implicitly private (so explicit declaration as private redundant)
     private MyEnumWithStaticValues() {
         // Compiler error unless staticValue final (since used in constructor)
         System.out.println("staticValue is " + staticValue);
