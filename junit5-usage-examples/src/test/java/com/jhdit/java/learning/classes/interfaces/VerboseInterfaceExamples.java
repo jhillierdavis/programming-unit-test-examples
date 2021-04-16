@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Examples of verbose and implicit interface declaration.
+ */
+
 abstract interface Verbose // abstract is redundant for interfaces (but allowed by compiler)
 {
     int staticMemberVariable = 10; // member variables are implicitly static!
