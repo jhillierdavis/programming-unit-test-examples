@@ -4,6 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * A lambda expression can implement interfaces with a single unimplemented (i.e. abstract) method.
+ * These types of interfaces are called Functional Interfaces (the annotation enforces adherence to this rule)
+ * (Default & static method in interfaces ARE implemented i.e. are NOT abstract, so these are fine on a functional interface)
+ */
+
 @FunctionalInterface
 interface MyFunction  {
     String action(String text1, String text2);
