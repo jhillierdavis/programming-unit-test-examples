@@ -46,7 +46,7 @@ public class ListInitialisationExamples {
         // Then: list is as expected
         assertEquals(2, list.size());
         assertTrue(list.contains("foo"));
-        assertEquals("java.util.ImmutableCollections$List2", list.getClass().getName());
+        assertTrue(list.getClass().getName().startsWith("java.util.ImmutableCollections$List"));
 
         // But: cannot be modified (i.e. immutable)
         assertThrows(UnsupportedOperationException.class, () -> list.add("baz"));
