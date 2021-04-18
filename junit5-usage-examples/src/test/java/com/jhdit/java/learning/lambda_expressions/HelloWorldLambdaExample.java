@@ -26,4 +26,15 @@ class HelloWorldLambdaExamples {
 
         assertEquals("Hello + World!", lambda.action("Hello", "World"));
     }
+
+    @Test
+    void exploreWithVariableCapture()  {
+        var effectivelyFinalVariable = "Lambda";
+
+        MyFunction lambda = (s1, s2) -> effectivelyFinalVariable + " : " + s1 + " + " + s2 + "!";
+
+        // effectivelyFinalVariable = "Change!"; // No longer effectively final!
+
+        assertEquals("Lambda : Hello + World!", lambda.action("Hello", "World"));
+    }
 }
