@@ -16,6 +16,7 @@ interface MyFunction  {
 }
 
 class HelloWorldLambdaExamples {
+    private String instanceVariable = "TODO"; // Does NOT have to be final / effectively final
 
     @Test
     void explore()  {
@@ -29,12 +30,17 @@ class HelloWorldLambdaExamples {
 
     @Test
     void exploreWithVariableCapture()  {
-        var effectivelyFinalVariable = "Lambda";
-
-        MyFunction lambda = (s1, s2) -> effectivelyFinalVariable + " : " + s1 + " + " + s2 + "!";
+        // Given: a local (method) variable - it can be used in a lamda if final or effectively final
+        var localEffectivelyFinalVariable = "Lambda";
+        MyFunction lambda = (s1, s2) -> instanceVariable + " - " + localEffectivelyFinalVariable + " : " + s1 + " + " + s2 + "!";
 
         // effectivelyFinalVariable = "Change!"; // No longer effectively final!
 
-        assertEquals("Lambda : Hello + World!", lambda.action("Hello", "World"));
+        // Then: execute the lambda
+        assertEquals("TODO - Lambda : Hello + World!", lambda.action("Hello", "World"));
+
+        // Then: change the instance (class) variable
+        instanceVariable = "Java";
+        assertEquals("Java - Lambda : Hello + World!", lambda.action("Hello", "World"));
     }
 }
