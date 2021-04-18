@@ -2,7 +2,14 @@ package com.jhdit.java.learning.var;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Some gotchas (easy mistakes / unintuitive behaviour) related to 'var' type inferrence in Java (version 11+)
+ */
 
 public class VarGotchaExamples {
 
@@ -53,6 +60,34 @@ public class VarGotchaExamples {
         // Instead: (if want var as a float) use:
         var valueUsingVarAsFloat = 2.0F;
         assertTrue(((Object) valueUsingVarAsFloat) instanceof Float);
+    }
+
+    @Test
+    void genericCollections() {
+        // Given: a string array
+        List<String> stringList = new ArrayList<>();
+        stringList.add("item");
+
+        // Then: behaves as expected (entries are String type)
+        String str = stringList.get(0);
+        assertEquals("item", str);
+
+        // Given: (however!) a var inferred list (& use of diamond operator)
+        var varList = new ArrayList<>();
+        varList.add("item");
+
+        // Then: infers an Object list (entries are NOT String type, but Object type instead)
+        // String item = varList.get(0); // Compiler error!
+        Object obj = varList.get(0);
+        assertEquals("item", obj);
+
+        // Given: a generic type (on the right hand side)
+        var varListAsStringList = new ArrayList<String>();
+        varListAsStringList.add("item");
+
+        // Then: infers a String list (as presumably intended previously)
+        str = varListAsStringList.get(0);
+        assertEquals("item", str);
     }
 
 }
