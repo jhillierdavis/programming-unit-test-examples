@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class Planet {
     private BigDecimal milesFromSun;
 
@@ -37,9 +39,7 @@ public class PlantStreamExamples {
         // Function<BigDecimal, BigDecimal> lambda = earth.getMilesFromSun()::milesToKilometers; // Wrong number of type arguments: 1; required: 2, Cannot resolve method 'milesToKilometers'
         // Function<Planet, BigDecimal> lambda = earth.getMilesFromSun()::milesToKilometers; // Cannot resolve method 'milesToKilometers'
 
-        Function<BigDecimal, BigDecimal> lambda = Planet::milesToKilometres;
-
-
-
+        Function<BigDecimal, BigDecimal> lambdaMilesToKm = Planet::milesToKilometres;
+        assertEquals(149_668_620, lambdaMilesToKm.apply(earth.getMilesFromSun()).doubleValue());
     }
 }
