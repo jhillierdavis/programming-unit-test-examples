@@ -41,4 +41,43 @@ public class SwitchStatementExamples {
         assertEquals(11.55F, calculateCompoundInterest(10, 2));
         assertEquals(13.282499F, calculateCompoundInterest(10, 3));
     }
+
+    @Test
+    public void switchWithoutBreakOnMonth() {
+        int month = 11;
+        String message = "";
+
+        switch(month)   {
+            case 1: case 3: case 5: case 7:
+            case 8: case 10: case 12:
+                message = "31 days. ";
+            case 4: case 6: case 11:
+                message = "30 days. ";
+            case 2:
+                message = "28 days. ";
+        }
+
+        assertEquals("28 days. ", message);
+    }
+
+    @Test
+    void switchWithBreakOnMonth() {
+        int month = 11;
+        String message = "";
+
+        switch(month)   {
+            case 1: case 3: case 5: case 7:
+            case 8: case 10: case 12:
+                message = "31 days. ";
+                break;
+            case 4: case 6: case 11:
+                message = "30 days. ";
+                break;
+            case 2:
+                message = "28 days. "; // 29 on leap year!
+                break;
+        }
+
+        assertEquals("30 days. ", message);
+    }
 }
