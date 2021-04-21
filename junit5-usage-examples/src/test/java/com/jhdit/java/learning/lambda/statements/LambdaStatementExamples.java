@@ -36,6 +36,11 @@ public class LambdaStatementExamples {
             System.out.println(x);
         };
 
+
+        String city = "Munich";
+        BiFunction<Integer, Integer, String> lambdaCitySubstring = city::substring; // Non-static method cannot be referenced from a static context
+
+
         Integer integer = Integer.valueOf(0);
         assertEquals(1, ++integer); // Can increment wrapper classes
 
@@ -55,7 +60,7 @@ public class LambdaStatementExamples {
         Function<String> hello = () -> "Hello"; // Wrong number of type arguments: 1; required: 2
 
         String city = "Munich";
-        BiFunction<Integer, Integer, String> lambaSubstring = String::substring; // Non-static method cannot be referenced from a static context
+        BiFunction<Integer, Integer, String> lambaCitySubstring = String::substring; // Non-static method cannot be referenced from a static context
 
         Consumer<String> con1 = final String x -> System.out.println(x); // Invalid syntax (requires parenthesis)
 
