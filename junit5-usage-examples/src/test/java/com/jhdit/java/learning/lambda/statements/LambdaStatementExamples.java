@@ -2,6 +2,7 @@ package com.jhdit.java.learning.lambda.statements;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.function.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,6 +19,9 @@ public class LambdaStatementExamples {
 
         Supplier<String> hello = () -> "Hello"; // Supplies a result
 
+        Supplier<LocalDate> lambdaNow = () -> LocalDate.now();
+        Supplier<LocalDate> lambdaNowMethodRef = LocalDate::now;
+
         BiPredicate<Integer, Integer> integerTest = (x,y) -> x == y;
 
         Consumer<String> conSingle = x -> System.out.println(x);
@@ -28,6 +32,7 @@ public class LambdaStatementExamples {
         Consumer<String> conSingleWithTypeAndFinalAndBrackets = (final String x) -> { System.out.println(x); };
         Consumer<String> conSingleWithVar = (var x) -> System.out.println(x);
         Consumer<String> conSingleWithVarAndFinal = (final var x) -> System.out.println(x);
+        Consumer<String> conExpression = System.out::println;
 
         BiConsumer<String, String> biCon = (final var x, var y) -> System.out.println(x+y);
 
@@ -43,8 +48,6 @@ public class LambdaStatementExamples {
 
         Integer integer = Integer.valueOf(0);
         assertEquals(1, ++integer); // Can increment wrapper classes
-
-
     }
 
     @Test
