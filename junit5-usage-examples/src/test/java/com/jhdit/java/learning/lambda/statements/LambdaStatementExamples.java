@@ -3,6 +3,7 @@ package com.jhdit.java.learning.lambda.statements;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.function.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,6 +22,9 @@ public class LambdaStatementExamples {
 
         Supplier<LocalDate> lambdaNow = () -> LocalDate.now();
         Supplier<LocalDate> lambdaNowMethodRef = LocalDate::now;
+
+        Supplier<String> lambdaString = String::new;
+        Supplier<ArrayList> lambdaArrayList = ArrayList::new;
 
         BiPredicate<Integer, Integer> integerTest = (x,y) -> x == y;
 
