@@ -10,16 +10,16 @@ public class BitwiseOperatorExamples {
     void explore()  {
         boolean carrot = true;
         boolean potato = false;
-        var broccoli = false;
+        var broccoli = true;
 
         carrot = carrot & potato;
-        assertEquals(false, carrot);
+        assertFalse(carrot);
 
         broccoli = broccoli ? !carrot : potato;
-        assertEquals(false, broccoli);
+        assertTrue(broccoli);
 
         potato = !broccoli ^ carrot; // bitwise exclusive OR (returns true if and only if the operands are different)
-        assertEquals(true, potato);
+        assertFalse(potato);
     }
 
     @Test
