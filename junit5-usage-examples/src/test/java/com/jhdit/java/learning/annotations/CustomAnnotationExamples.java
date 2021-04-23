@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.Field;
 
 import static java.lang.annotation.ElementType.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,16 +14,17 @@ import static org.junit.jupiter.api.Assertions.*;
 @Target(value = { FIELD, CONSTRUCTOR })
 @interface CustomAnnotation {
     String owner();
-    int count() default 100; // Must have a default as not specified
+    int priority() default 50; // Must have a default as not specified
 }
 
 @Deprecated
 class Store    {
-    public String desc;
+    @CustomAnnotation(owner="Audit", priority = 97)
+    public String label;
 
     @CustomAnnotation(owner = "Test Suite")
-    public Store(String desc)  {
-        this.desc = desc;
+    public Store(String label)  {
+        this.label = label;
     }
 }
 
@@ -49,7 +51,18 @@ public class CustomAnnotationExamples {
             assertTrue(constructor.isAnnotationPresent(CustomAnnotation.class));
             CustomAnnotation customAnnotation = constructor.getAnnotation(CustomAnnotation.class);
             assertEquals("Test Suite", customAnnotation.owner());
-            assertEquals(100, customAnnotation.count());
+            assertEquals(50, customAnnotation.priority());
+        }
+
+        // And: expected field annotation is present & has expected values
+        try {
+            Field reflectionField = clazz.getField("label");
+            assertTrue(reflectionField.isAnnotationPresent(CustomAnnotation.class));
+            CustomAnnotation customAnnotation = reflectionField.getAnnotation(CustomAnnotation.class);
+            assertEquals("Audit", customAnnotation.owner());
+            assertEquals(97, customAnnotation.priority());
+        } catch (NoSuchFieldException nsfe) {
+            fail("Test data setup invalid!");
         }
     }
 }
