@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-// @Target(value = { METHOD }) // Invalid as not applied on a method in this example!
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = { FIELD, CONSTRUCTOR })
 @interface CustomAnnotation {
@@ -27,8 +26,10 @@ class Store    {
     }
 }
 
+
 public class CustomAnnotationExamples {
 
+    @SuppressWarnings("deprecated")
     @Test
     void explore()  {
         // Given: an object with annotations
