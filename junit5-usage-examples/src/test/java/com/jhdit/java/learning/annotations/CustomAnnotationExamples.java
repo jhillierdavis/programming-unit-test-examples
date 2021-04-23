@@ -33,7 +33,7 @@ public class CustomAnnotationExamples {
 
     @SuppressWarnings("deprecated")
     @Test
-    void explore()  {
+    void constructorCustomAnnotationMetaData()  {
         // Given: an object with annotations
         Store store = new Store("Local store");
 
@@ -43,8 +43,18 @@ public class CustomAnnotationExamples {
         // Then: expected class level annotations are present (at runtime)
         assertTrue(clazz.isAnnotationPresent(Deprecated.class));
         assertFalse(clazz.isAnnotationPresent(CustomAnnotation.class));
+    }
 
-        // And: expected method level annotations are present (at runtime, may require use of RetentionPolicy.RUNTIME!)
+    @SuppressWarnings("deprecated")
+    @Test
+    void classLevelCustomAnnotationMetaData()  {
+        // Given: an object with annotations
+        Store store = new Store("Local store");
+
+        // When: obtain class meta-data
+        Class<? extends Store> clazz = store.getClass();
+
+        // Then: expected method level annotations are present (at runtime, may require use of RetentionPolicy.RUNTIME!)
         assertEquals(1, (clazz.getConstructors()).length); // Single constructor, so array of size 1
         for (var constructor: clazz.getConstructors())  {
             // NB: Would have failed without use of RetentionPolicy.RUNTIME
@@ -53,8 +63,18 @@ public class CustomAnnotationExamples {
             assertEquals("Test Suite", customAnnotation.owner());
             assertEquals(50, customAnnotation.priority());
         }
+    }
 
-        // And: expected field annotation is present & has expected values
+    @SuppressWarnings("deprecated")
+    @Test
+    void fieldCustomAnnotationMetaData()  {
+        // Given: an object with annotations
+        Store store = new Store("Local store");
+
+        // When: obtain class meta-data
+        Class<? extends Store> clazz = store.getClass();
+
+        // Then: expected field annotation is present & has expected values
         try {
             Field reflectionField = clazz.getField("label");
             assertTrue(reflectionField.isAnnotationPresent(CustomAnnotation.class));
