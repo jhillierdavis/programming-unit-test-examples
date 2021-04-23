@@ -7,8 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 // @Target(value = { METHOD }) // Invalid as not applied on a method in this example!
 @Retention(RetentionPolicy.RUNTIME)
@@ -22,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class Store    {
     public String desc;
 
-    @CustomAnnotation(owner = "Sam")
+    @CustomAnnotation(owner = "Test Suite")
     public Store(String desc)  {
         this.desc = desc;
     }
@@ -43,9 +42,13 @@ public class CustomAnnotationExamples {
         assertFalse(clazz.isAnnotationPresent(CustomAnnotation.class));
 
         // And: expected method level annotations are present (at runtime, may require use of RetentionPolicy.RUNTIME!)
+        assertEquals(1, (clazz.getConstructors()).length); // Single constructor, so array of size 1
         for (var constructor: clazz.getConstructors())  {
             // NB: Would have failed without use of RetentionPolicy.RUNTIME
             assertTrue(constructor.isAnnotationPresent(CustomAnnotation.class));
+            CustomAnnotation customAnnotation = constructor.getAnnotation(CustomAnnotation.class);
+            assertEquals("Test Suite", customAnnotation.owner());
+            assertEquals(100, customAnnotation.count());
         }
     }
 }
