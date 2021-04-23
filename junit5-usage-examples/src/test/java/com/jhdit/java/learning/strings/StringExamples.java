@@ -67,4 +67,22 @@ public class StringExamples {
         String title = "dOcToR";
         assertEquals("Doctor", title.substring(0,1).toUpperCase() + title.substring(1).toLowerCase());
     }
+
+    @Test
+    public void splitOnSpace() {
+        String[] strArray = "A set of words!".split(" ");
+
+        assertEquals(4, strArray.length);
+        assertEquals("A", strArray[0]);
+        assertEquals("words!", strArray[3]);
+    }
+
+    @Test
+    public void splitOnComma() {
+        String[] strArray = "Alpha,Beta,Gamma".split(",");
+
+        assertEquals(3, strArray.length);
+        assertEquals("Alpha", strArray[0]);
+        assertEquals("Gamma", strArray[2]);
+    }
 }
