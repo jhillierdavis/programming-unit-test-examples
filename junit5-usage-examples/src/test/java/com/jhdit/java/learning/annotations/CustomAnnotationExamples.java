@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = { FIELD, CONSTRUCTOR })
 @interface CustomAnnotation {
-    String owner();
+    String owner(); // must be public (implicitly so)
     int priority() default 50; // Must have a default as not specified
 }
 
