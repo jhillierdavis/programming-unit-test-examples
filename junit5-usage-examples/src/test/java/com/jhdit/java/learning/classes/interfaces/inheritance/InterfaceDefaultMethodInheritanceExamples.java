@@ -27,16 +27,30 @@ interface Gold {
     }
 }
 
-class Color implements Black, Red, Gold {}
+class MetalicColor implements Black, Red, Gold {}
 
+abstract class Pink {
+    public String getColor(){
+        return "Pink";
+    }
+}
+
+class BlendedColor extends Pink implements Black { }
 
 public class InterfaceDefaultMethodInheritanceExamples {
 
     @Test
-    void explore()  {
-        Color color = new Color();
+    void exploreOverriddenInterfaceDefault()  {
+        MetalicColor color = new MetalicColor();
 
         assertEquals("Red", color.getColor());
         assertEquals("Gold", Gold.getColor());
+    }
+
+    @Test
+    void exploreConcreteImplementationTakesPrecedence()  {
+        BlendedColor color = new BlendedColor();
+
+        assertEquals("Pink", color.getColor());
     }
 }
