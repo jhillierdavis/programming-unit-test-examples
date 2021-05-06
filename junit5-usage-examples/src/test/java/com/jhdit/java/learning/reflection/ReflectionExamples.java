@@ -145,7 +145,7 @@ public class ReflectionExamples {
         }
 
         // Then: the field names are as expected
-        assertTrue(fieldNames.containsAll(Arrays.asList("transparent")));
+        assertTrue(fieldNames.contains(("transparent")));
     }
 
     @Test
@@ -162,7 +162,7 @@ public class ReflectionExamples {
         }
 
         // Then: the field names are as expected
-        assertTrue(fieldNames.containsAll(Arrays.asList("opaque")));
+        assertTrue(fieldNames.contains("opaque"));
     }
 
     @Test
