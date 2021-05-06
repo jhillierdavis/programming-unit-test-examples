@@ -74,5 +74,31 @@ public class ReflectionExamples {
         assertFalse(methodList.contains("getPublicInfo"));
     }
 
+    @Test
+    public void invokePublicMethod() throws Exception {
+        // Given: a public method
+        Method method = SubjectUnderTest.class.getDeclaredMethod("getPublicInfo");
+
+        // When: invoke private method
+        String returnValue = (String) method.invoke(new SubjectUnderTest());
+
+        // Then: the method can be invoked!
+        assertEquals("Public: Available to all", returnValue);
+    }
+
+    @Test
+    public void invokePrivateMethod() throws Exception {
+        // Given: a private method
+        Method method = SubjectUnderTest.class.getDeclaredMethod("getPrivateInfo");
+
+        // Setup: allow private method to be invoked
+        method.setAccessible(true);
+
+        // When: invoke private method
+        String returnValue = (String) method.invoke(new SubjectUnderTest());
+
+        // Then: the method can be invoked!
+        assertEquals("Private: Something hidden is revealed!", returnValue);
+    }
 
 }

@@ -5,7 +5,7 @@ public class SubjectUnderTest {
     public String transparent = "Available to all";
 
     public String getPublicInfo()   {
-        return "Public" + "Available to all";
+        return "Public: " + this.transparent;
     }
 
     private String getPrivateInfo() {
