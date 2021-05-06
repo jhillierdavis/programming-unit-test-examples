@@ -3,6 +3,7 @@ package com.jhdit.java.learning.reflection;
 import com.jhdit.java.learning.reflection.sut.SubjectUnderTest;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Basic usage of reflection examples.
+ * Basic usage of reflection examples (e.g. obtain & invoke methods, view fields).
  */
 
 public class ReflectionExamples {
@@ -112,6 +113,56 @@ public class ReflectionExamples {
 
         // Then: the method can be invoked!
         assertEquals("Test parameter", returnValue);
+    }
+
+    @Test
+    public void listDeclaredFields() throws Exception  {
+        // When: obtain fields (of all visibilities) from the SUT
+        Field[] fields = SubjectUnderTest.class.getDeclaredFields();
+
+        // And: obtain a list of field names
+        List<String> fieldNames = new ArrayList<>();
+        for (Field field: fields) {
+            // System.out.println("Field: " + field.getName());
+            fieldNames.add(field.getName());
+        }
+
+        // Then: the field names are as expected
+        assertTrue(fieldNames.containsAll(Arrays.asList("transparent", "opaque")));
+    }
+
+    @Test
+    public void listPublicFields() throws Exception  {
+        // Setup: obtain public fields from the SUT
+        Field[] fields = SubjectUnderTest.class.getDeclaredFields();
+
+        // And: obtain a list of public field names
+        List<String> fieldNames = new ArrayList<>();
+        for (Field field: fields) {
+            if (Modifier.isPublic(field.getModifiers())) {
+                fieldNames.add(field.getName());
+            }
+        }
+
+        // Then: the field names are as expected
+        assertTrue(fieldNames.containsAll(Arrays.asList("transparent")));
+    }
+
+    @Test
+    public void listPrivateFields() throws Exception  {
+        // Setup: obtain private fields from the SUT
+        Field[] fields = SubjectUnderTest.class.getDeclaredFields();
+
+        // And: obtain a list of private field names
+        List<String> fieldNames = new ArrayList<>();
+        for (Field field: fields) {
+            if (Modifier.isPrivate(field.getModifiers())) {
+                fieldNames.add(field.getName());
+            }
+        }
+
+        // Then: the field names are as expected
+        assertTrue(fieldNames.containsAll(Arrays.asList("opaque")));
     }
 
 }
