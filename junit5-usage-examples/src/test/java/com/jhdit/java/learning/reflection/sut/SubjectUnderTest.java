@@ -11,4 +11,13 @@ public class SubjectUnderTest {
     private String getPrivateInfo() {
         return "Private: " + this.opaque;
     }
+
+
+    public String publicEcho(String param) {
+        return param;
+    }
+
+    private String privateEcho(String param) {
+        return param;
+    }
 }

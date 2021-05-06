@@ -20,7 +20,7 @@ public class ReflectionExamples {
     @Test
     public void listAllDeclaredMethodNames()    {
         // Given: the expected set of methods names for a SUT (Subject Under Test)
-        List<String> expectedMethods = Arrays.asList("getPublicInfo", "getPrivateInfo");
+        List<String> expectedMethods = Arrays.asList("getPublicInfo", "getPrivateInfo", "publicEcho", "privateEcho");
 
         // When: methods are inspected via reflection
         Method[] methods = SubjectUnderTest.class.getDeclaredMethods();
@@ -31,13 +31,13 @@ public class ReflectionExamples {
 
         // Then: the methods names gathered by reflection are as expected
         assertTrue(methodList.containsAll(expectedMethods));
-        assertEquals(2, methodList.size());
+        assertEquals(4, methodList.size());
     }
 
     @Test
     public void listPublicMethodNames() {
         // Given: the expected set of public methods names for a SUT (Subject Under Test)
-        List<String> expectedPublicMethods = Arrays.asList("getPublicInfo");
+        List<String> expectedPublicMethods = Arrays.asList("getPublicInfo", "publicEcho");
 
         // When: public methods are inspected via reflection
         Method[] methods = SubjectUnderTest.class.getDeclaredMethods();
@@ -50,14 +50,14 @@ public class ReflectionExamples {
 
         // Then: the methods names gathered by reflection are as expected (public only!)
         assertTrue(methodList.containsAll(expectedPublicMethods));
-        assertEquals(1, methodList.size());
+        assertEquals(2, methodList.size());
         assertFalse(methodList.contains("getPrivateInfo"));
     }
 
     @Test
     public void listPrivateMethodNames()    {
         // Given: the expected set of public methods names for a SUT (Subject Under Test)
-        List<String> expectedPrivateMethods = Arrays.asList("getPrivateInfo");
+        List<String> expectedPrivateMethods = Arrays.asList("getPrivateInfo", "privateEcho");
 
         // When: public methods are inspected via reflection
         Method[] methods = SubjectUnderTest.class.getDeclaredMethods();
@@ -70,7 +70,7 @@ public class ReflectionExamples {
 
         // Then: the methods names gathered by reflection are as expected (public only!)
         assertTrue(methodList.containsAll(expectedPrivateMethods));
-        assertEquals(1, methodList.size());
+        assertEquals(2, methodList.size());
         assertFalse(methodList.contains("getPublicInfo"));
     }
 
@@ -87,7 +87,7 @@ public class ReflectionExamples {
     }
 
     @Test
-    public void invokePrivateMethod() throws Exception {
+    public void invokePrivateMethodWithoutParams() throws Exception {
         // Given: a private method
         Method method = SubjectUnderTest.class.getDeclaredMethod("getPrivateInfo");
 
@@ -99,6 +99,21 @@ public class ReflectionExamples {
 
         // Then: the method can be invoked!
         assertEquals("Private: Something hidden is revealed!", returnValue);
+    }
+
+    @Test
+    public void invokePrivateMethodWithParams() throws Exception {
+        // Given: a private method
+        Method method = SubjectUnderTest.class.getDeclaredMethod("privateEcho", String.class);
+
+        // Setup: allow private method to be invoked
+        method.setAccessible(true);
+
+        // When: invoke private method
+        String returnValue = (String) method.invoke(new SubjectUnderTest(), "Test parameter");
+
+        // Then: the method can be invoked!
+        assertEquals("Test parameter", returnValue);
     }
 
 }
