@@ -36,9 +36,6 @@ public class ReflectionExamples {
 
     @Test
     public void listPublicMethodNames() {
-        // Given: the expected set of public methods names for a SUT (Subject Under Test)
-        List<String> expectedPublicMethods = Arrays.asList("getPublicInfo");
-
         // When: public methods are inspected via reflection
         Method[] methods = SubjectUnderTest.class.getDeclaredMethods();
         List<String> methodList = new ArrayList<>();
@@ -49,7 +46,7 @@ public class ReflectionExamples {
         }
 
         // Then: the methods names gathered by reflection are as expected (public only!)
-        assertTrue(methodList.containsAll(expectedPublicMethods));
+        assertTrue(methodList.contains("getPublicInfo"));
         assertEquals(1, methodList.size());
         assertFalse(methodList.contains("getPrivateInfo"));
         assertFalse(methodList.contains("echo"));
