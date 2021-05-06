@@ -165,4 +165,30 @@ public class ReflectionExamples {
         assertTrue(fieldNames.containsAll(Arrays.asList("opaque")));
     }
 
+    @Test
+    public void checkPublicFieldValue() throws Exception   {
+        // When: obtain a specific public field
+        Field field = SubjectUnderTest.class.getDeclaredField("transparent");
+
+        // And: obtain this field's value
+        String value = (String) field.get(new SubjectUnderTest());
+
+        // Then: the value is as expected
+        assertEquals("Available to all", value);
+    }
+
+    @Test
+    public void checkPrivateFieldValue() throws Exception   {
+        // When: obtain a specific private field
+        Field field = SubjectUnderTest.class.getDeclaredField("opaque");
+
+        // Setup: allow private field to be accessed
+        field.setAccessible(true);
+
+        // And: obtain this field's value
+        String value = (String) field.get(new SubjectUnderTest());
+
+        // Then: the value is as expected
+        assertEquals("Something hidden is revealed!", value);
+    }
 }
