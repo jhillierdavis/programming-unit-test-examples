@@ -37,11 +37,11 @@ describe("Javascript basics - values & variables", function() {
   }),
 
   it("Use of let vs const to declare variables", function() {
-    let mutible = "Unchanged";
+    let mutable = "Unchanged";
     const immutable = "Unchanged"
 
-    expect(function() { mutible = 'Changed' }).not.toThrow()
-    expect(mutible).toBe('Changed')
+    expect(function() { mutable = 'Changed' }).not.toThrow()
+    expect(mutable).toBe('Changed')
 
     // Via Node execution:
     // expect(function() {immutable = 'This will fail!'}).toThrow(TypeError("Assignment to constant variable."))
