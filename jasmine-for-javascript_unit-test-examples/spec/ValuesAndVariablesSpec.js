@@ -35,6 +35,22 @@ describe("Javascript basics - values & variables", function() {
       expect(typeof(['alpha', 'beta', "gamma"])).toBe("object") // Array (populated)
       expect(Array.isArray(['alpha', 'beta', "gamma"])).toBe(true) // Array (populated)
   }),
+
+  it("Use of let vs const to declare variables", function() {
+    let mutible = "Unchanged";
+    const immutable = "Unchanged"
+
+    expect(function() { mutible = 'Changed' }).not.toThrow()
+    expect(mutible).toBe('Changed')
+
+    // Via Node execution:
+    // expect(function() {immutable = 'This will fail!'}).toThrow(TypeError("Assignment to constant variable."))
+    // In web browser:
+    // expect(function() {immutable = 'This will fail!'}).toThrow(TypeError("Attempted to assign to readonly property."))
+    // Generic:
+    expect(function() {immutable = 'This will fail!'}).toThrow()
+    expect(immutable).toBe('Unchanged')
+  })
   
   it("Incrementing with ++", function() {
     // example from 'Modern Javascript for the impatient' (P.10)
