@@ -63,4 +63,60 @@ describe("Javascript basics - values & variables", function() {
     expect(enigma).toBe(2);
   })
 
+  it("Addition exercise with different types", function() {
+    // exercise 1 from 'Modern Javascript for the impatient' (P.24)
+    expect(NaN + 0).toBeNaN();
+    expect(Infinity + 0).toBe(Infinity);
+    expect(false + 0).toBe(0);
+    expect(true + 0).toBe(1);
+    expect(null + 0).toBe(0);
+    expect(undefined + 0).toBeNaN();
+  })
+
+  it("Addition/subtraction exercise with objects/arrays", function() {
+    // exercise 2 from 'Modern Javascript for the impatient' (P.25)
+    expect(typeof([] + [])).toBe('string')
+    expect({} + []).toBe('[object Object]')
+    expect(typeof({} + [])).toBe('string')
+    expect([] + {}).toBe('[object Object]')
+    expect(typeof([] + {})).toBe('string')
+    expect([] + {}).toBe('[object Object]')
+    expect(typeof([] + {})).toBe('string')
+    expect([] - {}).toBeNaN()
+    expect(typeof([] - {})).toBe('number')
+
+  })
+
+  it("Negative numbers are odd when odd in JavaScript", function() {
+    // exercise 3 from 'Modern Javascript for the impatient' (P.25)
+
+    // Even
+    expect(4 % 2).toBe(0)
+    expect(-4 % 2).toBe(0) 
+
+    // Odd (is odd when number is negative)
+    expect(3 % 2).toBe(1)
+    expect(-3 % 2).toBe(-1) // Unlike Python (but like Java & C++) according to book
+
+    // Decimals
+    expect(4.00 % 2).toBe(0) 
+    expect(-4.00 % 2).toBe(0) 
+    expect(3.14 % 2).toBe(1.1400000000000001) 
+    expect(-3.14 % 2).toBe(-1.1400000000000001)     
+  })
+
+  it("Normalise degress of rotation between 0 (inclusive) and 360 (exclusive)", function() {
+    // exercise 4 from 'Modern Javascript for the impatient' (P.25)
+    function normalise(angle) {
+      return angle % 360
+    }
+
+    expect(normalise(0)).toBe(0)
+    expect(normalise(90)).toBe(90)
+    expect(normalise(180)).toBe(180)
+    expect(normalise(360)).toBe(0)
+    expect(normalise(540)).toBe(180)
+  })
+
+
 })
