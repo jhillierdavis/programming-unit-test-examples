@@ -37,4 +37,17 @@ describe("Explore JavaScript class syntax (JS does not really have classes, just
         expect(john.salary).toBe(200000)
     })
 
+    it("Manager.raiseSalary()", function() {
+        // Given: instances of Manager
+        let mary = new classSyntax.Manager("Mary Lee", 120000, 10);
+
+        // When: class method invokes
+        mary.raiseSalary(10)
+        
+
+        // Then: class variables as expected
+        expect(mary.name).toBe("Mary Lee");
+        expect(mary.salary).toBe(142000);
+    })
+
 })
