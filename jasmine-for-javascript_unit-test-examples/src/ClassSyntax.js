@@ -1,4 +1,4 @@
-'use strict'
+'use strict' // Strict mode (Modern JS only!)
 
 class Employee  {
     constructor(name, salary) {
@@ -13,7 +13,8 @@ class Employee  {
 }
 
 class Manager extends Employee {
-    constructor(name, salary, bonus) {
+    
+    constructor(name, salary, bonus = 2000) {
         super(name, salary)
         this.bonus = bonus
     }

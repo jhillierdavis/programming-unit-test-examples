@@ -27,6 +27,7 @@ describe("Explore JavaScript class syntax (JS does not really have classes, just
 
         // Then: class variables as expected
         expect(john instanceof classSyntax.Employee).toBe(true)
+        expect(typeof(john)).toBe('object')
         expect(john.name).toBe("John Smith");
         expect(john.salary).toBe(66000);
         expect(sally.name).toBe("Sally Jones");
@@ -39,7 +40,7 @@ describe("Explore JavaScript class syntax (JS does not really have classes, just
         expect(john.salary).toBe(200000)
     })
 
-    it("Manager.raiseSalary()", function() {
+    it("Manager.raiseSalary() with specified bonus", function() {
         // Given: instances of Manager
         let mary = new classSyntax.Manager("Mary Lee", 120000, 5000);
 
@@ -53,6 +54,19 @@ describe("Explore JavaScript class syntax (JS does not really have classes, just
         // And: instanceof determines class type as expected
         expect(mary instanceof classSyntax.Employee).toBe(true)
         expect(mary instanceof classSyntax.Manager).toBe(true)
+        expect(typeof(mary)).toBe('object')
+    })
+
+    it("Manager.raiseSalary() with default bonus", function() {
+        // Given: instances of Manager
+        let david = new classSyntax.Manager("David Walker", 120000);
+
+        // When: class method invoked
+        david.raiseSalary(10)
+
+        // Then: class variables as expected (with salary also reflecting bonus payment)
+        expect(david.name).toBe("David Walker");
+        expect(david.salary).toBe(134000);
     })
 
 })
