@@ -13,8 +13,9 @@ class Employee  {
 }
 
 class Manager extends Employee {
-    
-    constructor(name, salary, bonus = 2000) {
+    static DEFAULT_BONUS = 2000 // static field
+
+    constructor(name, salary, bonus = Manager.DEFAULT_BONUS) {
         super(name, salary)
         this.bonus = bonus
     }

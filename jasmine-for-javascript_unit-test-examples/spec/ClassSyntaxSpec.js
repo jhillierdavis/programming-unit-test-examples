@@ -67,6 +67,9 @@ describe("Explore JavaScript class syntax (JS does not really have classes, just
         // Then: class variables as expected (with salary also reflecting bonus payment)
         expect(david.name).toBe("David Walker");
         expect(david.salary).toBe(134000);
+
+        // And: check bonus (via static field)
+        expect(classSyntax.Manager.DEFAULT_BONUS).toBe(2000)
     })
 
 })
