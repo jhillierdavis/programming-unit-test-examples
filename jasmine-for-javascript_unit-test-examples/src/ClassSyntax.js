@@ -1,8 +1,14 @@
 'use strict' // Strict mode (Modern JS only!)
 
-class Employee  {
-    constructor(name, salary) {
+class Worker {
+    constructor(name) {
         this.name = name
+    }
+}
+
+class Employee extends Worker {
+    constructor(name, salary) {
+        super(name)
         this.salary = salary
     }
 
@@ -26,10 +32,18 @@ class Manager extends Employee {
     }
 }
 
+class Volunteer extends Worker {
+    constructor(name) {
+        super(name)
+    }
+}
+
 if (typeof module !== 'undefined') {
     // Support for standalone exection (e.g. via Node.js)
     module.exports = {
+        Worker: Worker,
         Employee: Employee,
-        Manager: Manager
+        Manager: Manager,
+        Volunteer: Volunteer
     }
 }
