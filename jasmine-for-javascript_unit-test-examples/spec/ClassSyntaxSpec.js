@@ -8,7 +8,8 @@ if (typeof require == "function") {
 } else {
   // Support for exectuion via Web Browser (e.g. via Jasmine 'SpecRunner.html' )
   classSyntax = {
-    Employee: Employee
+    Employee: Employee,
+    Manager: Manager
   }
 }
 
@@ -20,7 +21,7 @@ describe("Explore JavaScript class syntax (JS does not really have classes, just
         let john = new classSyntax.Employee("John Smith", 60000);
         let sally = new classSyntax.Employee("Sally Jones", 50000);
 
-        // When: class method invokes
+        // When: class method invoked
         john.raiseSalary(10)
         sally.raiseSalary(50)
 
@@ -39,15 +40,14 @@ describe("Explore JavaScript class syntax (JS does not really have classes, just
 
     it("Manager.raiseSalary()", function() {
         // Given: instances of Manager
-        let mary = new classSyntax.Manager("Mary Lee", 120000, 10);
+        let mary = new classSyntax.Manager("Mary Lee", 120000, 5000);
 
-        // When: class method invokes
+        // When: class method invoked
         mary.raiseSalary(10)
-        
 
-        // Then: class variables as expected
+        // Then: class variables as expected (with salary also reflecting bonus payment)
         expect(mary.name).toBe("Mary Lee");
-        expect(mary.salary).toBe(142000);
+        expect(mary.salary).toBe(137000);
     })
 
 })

@@ -12,9 +12,22 @@ class Employee  {
     }
 }
 
+class Manager extends Employee {
+    constructor(name, salary, bonus) {
+        super(name, salary)
+        this.bonus = bonus
+    }
+
+    raiseSalary(percent) {
+        super.raiseSalary(percent)
+        this.salary += this.bonus
+    }
+}
+
 if (typeof module !== 'undefined') {
     // Support for standalone exection (e.g. via Node.js)
     module.exports = {
-        Employee: Employee
+        Employee: Employee,
+        Manager: Manager
     }
 }
