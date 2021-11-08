@@ -1,11 +1,24 @@
 'use strict'
 
+let classSyntax
+
+if (typeof require == "function") {
+  // Support for execution via Node.js
+  classSyntax = require("../src/ClassSyntax.js")
+} else {
+  // Support for exectuion via Web Browser (e.g. via Jasmine 'SpecRunner.html' )
+  classSyntax = {
+    Employee: Employee
+  }
+}
+
+
 describe("Explore JavaScript class syntax (JS does not really have classes, just constructor functions)", function() {
 
     it("Employee.raiseSalary()", function() {
         // Given: instances of Employee
-        let john = new Employee("John Smith", 60000);
-        let sally = new Employee("Sally Jones", 50000);
+        let john = new classSyntax.Employee("John Smith", 60000);
+        let sally = new classSyntax.Employee("Sally Jones", 50000);
 
         // When: class method invokes
         john.raiseSalary(10)

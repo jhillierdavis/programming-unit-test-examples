@@ -11,3 +11,10 @@ class Employee  {
         this.salary = Math.trunc(value)
     }
 }
+
+if (typeof module !== 'undefined') {
+    // Support for standalone exection (e.g. via Node.js)
+    module.exports = {
+        Employee: Employee
+    }
+}
