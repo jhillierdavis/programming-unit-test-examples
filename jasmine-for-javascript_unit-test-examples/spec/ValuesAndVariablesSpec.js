@@ -1,3 +1,5 @@
+'use strict'
+
 describe("Javascript basics - values & variables", function() {
 
   it ("Type checks via typeof operator", function() {
@@ -90,13 +92,15 @@ describe("Javascript basics - values & variables", function() {
   it("Negative numbers are odd when odd in JavaScript", function() {
     // exercise 3 from 'Modern Javascript for the impatient' (P.25)
 
-    // Even
-    expect(4 % 2).toBe(0)
-    expect(-4 % 2).toBe(0) 
+    function isEven(n) {return n%2 == 0}
+    function isOdd(n) {return n%2 == 1} 
 
-    // Odd (is odd when number is negative)
-    expect(3 % 2).toBe(1)
+    expect(isEven(4)).toBe(true)
+    expect(isEven(-4)).toBe(true) 
+    expect(isOdd(3)).toBe(true)
+    expect(isOdd(-3)).toBe(false) // ! Odd (is odd when number is negative)
     expect(-3 % 2).toBe(-1) // Unlike Python (but like Java & C++) according to book
+    expect(Math.abs(-3) % 2).toBe(1)
 
     // Decimals
     expect(4.00 % 2).toBe(0) 
