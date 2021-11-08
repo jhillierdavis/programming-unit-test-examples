@@ -29,6 +29,12 @@ describe("Explore JavaScript class syntax (JS does not really have classes, just
         expect(john.salary).toBe(66000);
         expect(sally.name).toBe("Sally Jones");
         expect(sally.salary).toBe(75000);
+
+        // And: if salary accessed directly
+        john.salary = 200000
+
+        // Then: salary can be set directly (i.e. NOT private!)
+        expect(john.salary).toBe(200000)
     })
 
 })
