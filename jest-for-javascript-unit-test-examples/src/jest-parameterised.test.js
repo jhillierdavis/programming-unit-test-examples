@@ -10,8 +10,17 @@ function reverseString(str) {
     return str.split("").reverse().join("");
 }
 
+function stripSpaceAndPunctuation(str) {
+	let cleansed = str.replace(/\s/g, '');
+        return cleansed.replace(/[\p{P}$+<=>^`|~]/gu, '')
+}
+
 function isPalindrome(str) {
-	return str.equalsIgnoreCase(reverseString(str))
+	let normalised = stripSpaceAndPunctuation(str)
+	if (normalised.length == 0)	{
+		return false
+	}
+	return normalised.equalsIgnoreCase(reverseString(normalised))
 }
 
 describe("isPalindrome", () => {
@@ -20,8 +29,17 @@ describe("isPalindrome", () => {
     ["Hannah", true], // Mixed case
     ["redivider", true],
     ["deified", true],
+    ["a", true],
+    ["race car", true],
+    ["never odd or even", true],
+    ["A man, a plan, a canal. Panama", true],
+    ["Madam, I'm Adam", true],
     ["car", false],
     ["wrong", false],
+    ["paliindrome", false],
+    ["almostomla", false],
+    ["", false],
+    [" ", false],
   ]).it("when the input is '%s'", (text, expected) => {
     expect(isPalindrome(text)).toBe(expected);
   });
