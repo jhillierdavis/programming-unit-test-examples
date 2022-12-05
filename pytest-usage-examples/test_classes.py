@@ -18,21 +18,21 @@ class Person:
 
         # Calculate age (in years) from DOB (date of birth)
         age_in_years = today.year - self.dob.year
-        if today.month < self.dob.month or today.month == self.dob.month and today.day < self.dob.day:
+        if today.month < self.dob.month or (today.month == self.dob.month and today.day < self.dob.day):
             age_in_years -= 1
         return age_in_years
 
         return age
 
     def is_adult(self) -> bool:
-        return self.get_age() >= 18;
+        return self.get_age() >= 18
 
 def test_age_restriction():
     # Setup
     today = date.today()
-    man_dob = date(today.year - 18, today.month - 1, today.day -1)
+    man_dob = date(today.year - 18, today.month - 1 if today.month > 1 else 12, today.day -1)
     man = Person("Adam Apple", man_dob)
-    woman_dob = date(today.year - 17, today.month + 1, today.day + 1)
+    woman_dob = date(today.year - 17, today.month + 1 if today.month < 12 else 1, today.day + 1)
     woman = Person("Eve Eden", woman_dob)
 
     # Check: class data & behaviour as expected
