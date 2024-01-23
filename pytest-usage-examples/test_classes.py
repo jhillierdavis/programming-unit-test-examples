@@ -30,15 +30,18 @@ class Person:
 def test_age_restriction():
     # Setup
     today = date.today()
-    man_dob = date(today.year - 18, today.month - 1 if today.month > 1 else 12, today.day -1)
+    
+    man_dob  = date(today.year - 18, today.month, today.day) # 18th birthday today 
     man = Person("Adam Apple", man_dob)
-    woman_dob = date(today.year - 17, today.month + 1 if today.month < 12 else 1, today.day + 1)
+
+    woman_dob = date(today.year - 17, today.month, today.day) # 17th birthday today 
     woman = Person("Eve Eden", woman_dob)
 
     # Check: class data & behaviour as expected
     assert man.type == "Human"
     assert man.name == "Adam Apple"
     assert man.is_adult() == True
+
     assert woman.type == "Human"
     assert woman.name == "Eve Eden"
     assert woman.is_adult() == False
